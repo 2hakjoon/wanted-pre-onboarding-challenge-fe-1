@@ -1,7 +1,7 @@
 import { buttonJoin, inputEmail, inputPassword, linkLogin } from "../data-tags"
 
-describe('join page', ()=>{
-  it('should visit join page', () =>{
+describe('join page', () => {
+  it('should visit join page', () => {
     cy.visit("/join")
   })
 
