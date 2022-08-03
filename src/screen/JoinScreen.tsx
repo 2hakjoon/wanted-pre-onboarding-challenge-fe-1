@@ -29,10 +29,10 @@ function JoinScreen() {
         <input className="input" data-cy="input-email" placeholder="이메일을 입력해주세요." />
         <span>비밀번호</span>
         <input className="input" data-cy="input-password" placeholder="비밀번호를 입력해주세요." />
-        <button className="btn-login" type="submit" data-cy="button-login">
+        <button className="btn-login" type="submit" data-cy="button-join">
           회원가입
         </button>
-        <a className="link-join" href="/" data-cy="link-join">
+        <a className="link-join" href="/" data-cy="link-login">
           로그인하기
         </a>
       </form>
