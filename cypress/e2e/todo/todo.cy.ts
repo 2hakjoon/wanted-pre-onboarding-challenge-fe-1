@@ -1,5 +1,14 @@
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
-import { buttonSaveTodo, inputTodoContent, inputTodoTitle, textTodoListTitle } from '../data-tags';
+import {
+  buttonSaveTodo,
+  inputTodoContent,
+  inputTodoTitle,
+  textTodoDetailContent,
+  textTodoDetailCreatedAt,
+  textTodoDetailTitle,
+  textTodoDetailUpdatedAt,
+  textTodoListTitle,
+} from '../data-tags';
 
 const testTitle = `테스트 타이틀${Math.random()}`;
 const testContent = `테스트 콘텐츠${Math.random()}`;
@@ -40,5 +49,34 @@ describe('create todo', () => {
     cy.get(buttonSaveTodo).should('exist').click();
 
     cy.contains(textTodoListTitle, testTitle);
+  });
+});
+
+describe('get todo detail', () => {
+  beforeEach(() => {
+    injectAuthTokenToLocalstorage();
+  });
+
+  it('should visit home', () => {
+    cy.visit('/');
+  });
+
+  it('should not render any todo detail', () => {
+    cy.visit('/');
+
+    cy.get(textTodoDetailTitle).should('not.exist');
+    cy.get(textTodoDetailContent).should('not.exist');
+    cy.get(textTodoDetailCreatedAt).should('not.exist');
+    cy.get(textTodoDetailUpdatedAt).should('not.exist');
+  });
+
+  it('should render todo detail', () => {
+    cy.visit('/');
+
+    cy.get('[data-cy="wrapper-todo-0"]').should('exist').click();
+    cy.get(textTodoDetailTitle).should('exist');
+    cy.get(textTodoDetailContent).should('exist');
+    cy.get(textTodoDetailCreatedAt).should('exist');
+    cy.get(textTodoDetailUpdatedAt).should('exist');
   });
 });

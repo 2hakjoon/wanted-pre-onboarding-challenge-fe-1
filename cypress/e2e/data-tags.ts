@@ -13,4 +13,7 @@ export const buttonSaveTodo = "[data-cy='button-save-todo']";
 export const textTodoListTitle = "[data-cy='text-todo-list-title']";
 export const textTodoListContent = "[data-cy='text-todo-list-content']";
 export const textTodoListCreatedAt = "[data-cy='text-todo-list-createdAt']";
-
+export const textTodoDetailTitle = '[data-cy="text-todo-detail-title"]'
+export const textTodoDetailContent = '[data-cy="text-todo-detail-content"]'
+export const textTodoDetailCreatedAt = '[data-cy="text-todo-detail-createdAt"]'
+export const textTodoDetailUpdatedAt = '[data-cy="text-todo-detail-updatedAt"]'

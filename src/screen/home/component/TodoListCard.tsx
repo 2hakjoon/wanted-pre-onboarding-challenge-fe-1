@@ -7,11 +7,13 @@ const Wrapper = styled.li`
   flex-direction: column;
 `;
 
+interface TodoListCardProps extends Todo {
+  onClick: () => void;
+}
 
-function TodoListCard({ title, createdAt, }: Todo) {
-
+function TodoListCard({ title, createdAt, ...rest }: TodoListCardProps) {
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <span data-cy="text-todo-list-title">{title}</span>
       <span data-cy="text-todo-list-createdAt">{createdAt}</span>
     </Wrapper>

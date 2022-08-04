@@ -6,7 +6,11 @@ import { apiCreateTodo, apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodos
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
 
-const Wrapper = styled.section``;
+const Wrapper = styled.div`
+  .wrapper-section {
+    display: flex;
+  }
+`;
 
 function HomeScreen() {
   const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
@@ -38,7 +42,9 @@ function HomeScreen() {
   };
 
   useEffect(() => {
-    refetchTodo();
+    if (selectedTodo) {
+      refetchTodo();
+    }
   }, [selectedTodo]);
 
   return (
@@ -50,13 +56,29 @@ function HomeScreen() {
           저장
         </button>
       </form>
-      <section>
-        <ul>
-          {!!todosData?.length &&
-            todosData?.map((todo) => <TodoListCard key={todo.id} {...todo} onClick={() => showTodoDetail(todo.id)} />)}
-        </ul>
-      </section>
-
+      <div className="wrapper-section">
+        <section>
+          <ul>
+            {!!todosData?.length &&
+              todosData?.map((todo, idx) => (
+                <TodoListCard
+                  data-cy={`wrapper-todo-${idx}`}
+                  key={todo.id}
+                  {...todo}
+                  onClick={() => showTodoDetail(todo.id)}
+                />
+              ))}
+          </ul>
+        </section>
+        {todoData && (
+          <section>
+            <span data-cy="text-todo-detail-title">{todoData?.title}</span>
+            <span data-cy="text-todo-detail-content">{todoData?.content}</span>
+            <span data-cy="text-todo-detail-createdAt">{todoData?.createdAt}</span>
+            <span data-cy="text-todo-detail-updatedAt">{todoData?.updatedAt}</span>
+          </section>
+        )}
+      </div>
     </Wrapper>
   );
 }
