@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { LoginParams,apiLogin, LoginResponse } from '../../api/Auth/login';
+import { LoginParams, apiLogin, LoginResponse } from '../../api/Auth/login';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
 const Wrapper = styled.section`
@@ -49,7 +49,8 @@ function LoginScreen() {
     return (
       Boolean(formState.errors.email?.type) === true ||
       Boolean(formState.errors.password?.type) === true ||
-      !Object.keys(getValues()).length
+      !getValues('email') ||
+      !getValues('password')
     );
   };
 
