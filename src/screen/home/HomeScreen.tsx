@@ -16,7 +16,7 @@ function HomeScreen() {
         <button type="submit" data-cy='button-save-todo'>저장</button>
       </div>
       <ul>
-        {data?.map((todo) => (
+        {!!data?.length  && data?.map((todo) => (
           <TodoListCard {...todo} />
         ))}
       </ul>
