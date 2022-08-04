@@ -1,5 +1,6 @@
 import { buttonLogin, inputEmail, inputPassword, linkJoin } from '../data-tags';
 import { routes } from '../../../src/screen/routes';
+import { authToken } from '../../../src/common/constants/local-storage';
 
 const emailRandom = `${Math.random()}@test.com`;
 const password = 'password';
@@ -109,7 +110,7 @@ describe('login process', () => {
     cy.get(buttonLogin)
       .should('exist')
       .click()
-      .should(() => expect(localStorage.getItem('TOKEN')).to.be.a('string'));
+      .should(() => expect(localStorage.getItem(authToken)).to.be.a('string'));
     cy.on('window:alert', (t) => {
       expect(t).to.contains('로그인이 완료되었습니다');
     });
