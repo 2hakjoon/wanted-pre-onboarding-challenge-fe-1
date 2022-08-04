@@ -25,7 +25,6 @@ const Wrapper = styled.section`
   }
 `;
 
-
 function SignUpScreen() {
   const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
@@ -53,7 +52,8 @@ function SignUpScreen() {
     return (
       Boolean(formState.errors.email?.type) === true ||
       Boolean(formState.errors.password?.type) === true ||
-      !Object.keys(getValues()).length
+      !getValues('email') ||
+      !getValues('password')
     );
   };
 
@@ -62,7 +62,8 @@ function SignUpScreen() {
       <form onSubmit={handleSubmit(joinHandler)}>
         <span className="text-head">회원가입</span>
         <span>이메일</span>
-        <input {...register('email', { pattern: emailPattern, required: true })} />
+
+        <input {...register('email', { pattern: emailPattern, required: true })} data-cy="input-email" />
         <span>비밀번호</span>
         <input
           type="password"
@@ -71,12 +72,7 @@ function SignUpScreen() {
           data-cy="input-password"
           placeholder="비밀번호를 입력해주세요."
         />
-        <button
-          disabled={isFullFilled()}
-          className="btn-login"
-          type="submit"
-          data-cy="button-join"
-        >
+        <button disabled={isFullFilled()} className="btn-join" type="submit" data-cy="button-join">
           회원가입
         </button>
         <a className="link-join" href="/" data-cy="link-login">
