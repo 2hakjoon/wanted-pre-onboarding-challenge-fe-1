@@ -14,6 +14,7 @@ interface TodoListCardProps {
 }
 
 function TodoListCard({ title, content, createdAt, updatedAt }: TodoListCardProps) {
+
   return (
     <Wrapper>
       <span>{title}</span>
