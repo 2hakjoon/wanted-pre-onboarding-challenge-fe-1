@@ -36,7 +36,9 @@ function HomeScreen() {
           저장
         </button>
       </form>
-      <ul>{!!data?.length && data?.map((todo) => <TodoListCard {...todo} />)}</ul>
+      <section>
+        <ul>{!!data?.length && data?.map((todo) => <TodoListCard {...todo} />)}</ul>
+      </section>
     </Wrapper>
   );
 }
