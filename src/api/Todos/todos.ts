@@ -1,6 +1,9 @@
 import { apiFetch } from '../custom-fetch';
 import { apiEndpont } from '../endpoints';
+import { Todo } from './types';
 
-export const apiGetTodos = async () => {
+export type ApiGetTodosResponse = Todo[];
+
+export const apiGetTodos = async (): Promise<ApiGetTodosResponse> => {
   return apiFetch.get(`${apiEndpont.getTodos}`).then((res) => res.json());
 };
