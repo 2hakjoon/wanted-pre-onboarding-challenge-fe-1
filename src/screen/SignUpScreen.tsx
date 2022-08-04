@@ -24,9 +24,12 @@ const Wrapper = styled.section`
   }
 `;
 
+const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+const passwordPattern = /^[A-Za-z0-9]{8,}$/;
+
 function SignUpScreen() {
-  const { register, getValues } = useForm();
-  const navigate = useNavigate()
+  const { register, getValues, formState } = useForm({ mode: 'onChange', criteriaMode: 'all' });
+  const navigate = useNavigate();
 
   const { data, mutate } = useMutation(apiSignUp);
 
@@ -41,7 +44,7 @@ function SignUpScreen() {
       if (token) {
         window.alert('회원가입이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
-        navigate("/")
+        navigate('/');
         window.location.reload();
       }
     };
@@ -49,19 +52,35 @@ function SignUpScreen() {
     mutate({ email: getValues('email'), password: getValues('password') }, { onSuccess });
   };
 
+  const isFullFilled = () => {
+    console.log(formState.errors.email, formState.errors.password, Object.keys(getValues()).length);
+
+    return (
+      Boolean(formState.errors.email?.type) === true ||
+      Boolean(formState.errors.password?.type) === true ||
+      !Object.keys(getValues()).length
+    );
+  };
+
   return (
     <Wrapper>
       <form>
         <span className="text-head">회원가입</span>
-        <input {...register('email')} className="input" data-cy="input-email" placeholder="이메일을 입력해주세요." />
+        <input {...register('email', { pattern: emailPattern, required: true })} />
         <span>비밀번호</span>
         <input
-          {...register('password')}
+          {...register('password', { pattern: passwordPattern, required: true })}
           className="input"
           data-cy="input-password"
           placeholder="비밀번호를 입력해주세요."
         />
-        <button className="btn-login" type="submit" data-cy="button-join" onClick={(e) => joinHandler(e)}>
+        <button
+          disabled={isFullFilled()}
+          className="btn-login"
+          type="submit"
+          data-cy="button-join"
+          onClick={(e) => joinHandler(e)}
+        >
           회원가입
         </button>
         <a className="link-join" href="/" data-cy="link-login">
