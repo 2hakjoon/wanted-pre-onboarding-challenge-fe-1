@@ -3,7 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiSignUp, SignUpResponse } from '../../api/Auth/signUp';
+import { apiSignUp, SignUpParams, SignUpResponse } from '../../api/Auth/signUp';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
 const Wrapper = styled.section`
@@ -25,18 +25,14 @@ const Wrapper = styled.section`
   }
 `;
 
-interface FormProps {
-  email: string;
-  password: string;
-}
 
 function SignUpScreen() {
-  const { register, getValues, formState, handleSubmit } = useForm<FormProps>({ mode: 'onChange' });
+  const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
 
   const { mutate } = useMutation(apiSignUp);
 
-  const joinHandler = ({ email, password }: FormProps) => {
+  const joinHandler = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ details, token }: SignUpResponse) => {
       if (details) {
         window.alert(details);
