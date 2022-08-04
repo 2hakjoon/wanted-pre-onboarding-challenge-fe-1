@@ -1,6 +1,10 @@
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
 import { buttonSaveTodo, inputTodoContent, inputTodoTitle } from '../data-tags';
 
+
+const testTitle = "테스트 타이틀";
+const testContent = "테스트 콘텐츠"
+
 describe('create todo', () => {
   beforeEach(()=>{
     injectAuthTokenToLocalstorage();
@@ -27,5 +31,13 @@ describe('create todo', () => {
     cy.on('window:alert', (t) => {
       expect(t).to.contains('내용을 모두 입력해주세요.');
     });
+  })
+
+  it('should create todo', () => {
+    cy.visit('/');
+
+    cy.get(inputTodoTitle).should('exist').type(testTitle)
+    cy.get(inputTodoContent).should('exist').type(testContent)
+    cy.get(buttonSaveTodo).should('exist').click();
   })
 });
