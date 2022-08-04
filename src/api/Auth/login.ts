@@ -1,6 +1,6 @@
 import { apiEndpont } from '../endpoints';
 
-interface LoginParams {
+export interface LoginParams {
   email: string;
   password: string;
 }

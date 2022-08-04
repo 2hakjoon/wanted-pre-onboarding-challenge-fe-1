@@ -1,11 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiLogin, LoginResponse } from '../api/Auth/login';
-import { apiSignUp } from '../api/Auth/signUp';
-import { emailPattern, passwordPattern } from '../common/constants/regex';
+import { LoginParams,apiLogin, LoginResponse } from '../../api/Auth/login';
+import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
 const Wrapper = styled.section`
   display: flex;
@@ -27,15 +25,12 @@ const Wrapper = styled.section`
 `;
 
 function LoginScreen() {
-  const { register, getValues, formState } = useForm({ mode: 'onChange' });
-  const navigate = useNavigate();
+  const { register, getValues, formState, handleSubmit } = useForm<LoginParams>({ mode: 'onChange' });
 
-  const { data, mutate } = useMutation(apiLogin);
+  const { mutate } = useMutation(apiLogin);
 
-  const loginHandler = (e: any) => {
-    e.preventDefault();
-
-    const onSuccess = ({ message, details, token }: LoginResponse) => {
+  const loginHandler = ({ email, password }: LoginParams) => {
+    const onSuccess = ({ details, token }: LoginResponse) => {
       if (details) {
         window.alert(details);
         return;
@@ -47,7 +42,7 @@ function LoginScreen() {
       }
     };
 
-    mutate({ email: getValues('email'), password: getValues('password') }, { onSuccess });
+    mutate({ email, password }, { onSuccess });
   };
 
   const isFullFilled = () => {
@@ -60,7 +55,7 @@ function LoginScreen() {
 
   return (
     <Wrapper>
-      <form>
+      <form onSubmit={handleSubmit(loginHandler)}>
         <span className="text-head">로그인</span>
         <input
           {...register('email', { pattern: emailPattern })}
@@ -75,13 +70,7 @@ function LoginScreen() {
           data-cy="input-password"
           placeholder="비밀번호를 입력해주세요."
         />
-        <button
-          className="btn-login"
-          type="submit"
-          data-cy="button-login"
-          onClick={(e) => loginHandler(e)}
-          disabled={isFullFilled()}
-        >
+        <button className="btn-login" type="submit" data-cy="button-login" disabled={isFullFilled()}>
           로그인
         </button>
         <a className="link-join" href="/join" data-cy="link-join">

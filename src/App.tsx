@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import SignUpScreen from './screen/sign-up/SignUpScreen';
-import LoginScreen from './screen/LoginScreen';
+import LoginScreen from './screen/login/LoginScreen';
 import { routes } from './screen/routes';
 
 const Wrapper = styled.main`
