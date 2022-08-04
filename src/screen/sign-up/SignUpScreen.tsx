@@ -1,10 +1,10 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiSignUp, SignUpResponse } from '../api/Auth/signUp';
-import { emailPattern, passwordPattern } from '../common/constants/regex';
+import { apiSignUp, SignUpResponse } from '../../api/Auth/signUp';
+import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
 const Wrapper = styled.section`
   display: flex;
@@ -25,16 +25,19 @@ const Wrapper = styled.section`
   }
 `;
 
+interface FormProps {
+  email: string;
+  password: string;
+}
+
 function SignUpScreen() {
-  const { register, getValues, formState } = useForm({ mode: 'onChange', criteriaMode: 'all' });
+  const { register, getValues, formState, handleSubmit } = useForm<FormProps>({ mode: 'onChange' });
   const navigate = useNavigate();
 
-  const { data, mutate } = useMutation(apiSignUp);
+  const { mutate } = useMutation(apiSignUp);
 
-  const joinHandler = (e: any) => {
-    e.preventDefault();
-
-    const onSuccess = ({ message, details, token }: SignUpResponse) => {
+  const joinHandler = ({ email, password }: FormProps) => {
+    const onSuccess = ({ details, token }: SignUpResponse) => {
       if (details) {
         window.alert(details);
         return;
@@ -47,12 +50,10 @@ function SignUpScreen() {
       }
     };
 
-    mutate({ email: getValues('email'), password: getValues('password') }, { onSuccess });
+    mutate({ email, password }, { onSuccess });
   };
 
   const isFullFilled = () => {
-    console.log(formState.errors.email, formState.errors.password, Object.keys(getValues()).length);
-
     return (
       Boolean(formState.errors.email?.type) === true ||
       Boolean(formState.errors.password?.type) === true ||
@@ -62,11 +63,13 @@ function SignUpScreen() {
 
   return (
     <Wrapper>
-      <form>
+      <form onSubmit={handleSubmit(joinHandler)}>
         <span className="text-head">회원가입</span>
+        <span>이메일</span>
         <input {...register('email', { pattern: emailPattern, required: true })} />
         <span>비밀번호</span>
         <input
+          type="password"
           {...register('password', { pattern: passwordPattern, required: true })}
           className="input"
           data-cy="input-password"
@@ -77,7 +80,6 @@ function SignUpScreen() {
           className="btn-login"
           type="submit"
           data-cy="button-join"
-          onClick={(e) => joinHandler(e)}
         >
           회원가입
         </button>

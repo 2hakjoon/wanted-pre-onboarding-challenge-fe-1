@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import SignUpScreen from './screen/SignUpScreen';
+import SignUpScreen from './screen/sign-up/SignUpScreen';
 import LoginScreen from './screen/LoginScreen';
 import { routes } from './screen/routes';
 
