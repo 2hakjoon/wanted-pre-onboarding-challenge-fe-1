@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import SignUpScreen from './screen/sign-up/SignUpScreen';
 import LoginScreen from './screen/login/LoginScreen';
 import { routes } from './screen/routes';
+import { authToken } from './common/constants/local-storage';
+import HomeScreen from './screen/home/HomeScreen';
 
 const Wrapper = styled.main`
   width: 100%;
@@ -13,12 +15,20 @@ const Wrapper = styled.main`
 `;
 
 function App() {
+  const isLoggedIn = !localStorage.getItem(authToken);
+
   return (
     <Wrapper>
       <Router>
         <Routes>
-          <Route path={routes.home} element={<LoginScreen />} />
-          <Route path={routes.join} element={<SignUpScreen />} />
+          {isLoggedIn ? (
+            <>
+              <Route path={routes.home} element={<LoginScreen />} />
+              <Route path={routes.join} element={<SignUpScreen />} />
+            </>
+          ) : (
+            <Route path={routes.home} element={<HomeScreen />} />
+          )}
         </Routes>
       </Router>
     </Wrapper>
