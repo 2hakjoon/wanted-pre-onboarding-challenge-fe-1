@@ -16,6 +16,6 @@ export const apiCreateTodo = async (params: TodoParams) => {
 export type ApiGetTodoById = Todo;
 
 export const apiGetTodoById = async (id: string | null): Promise<Todo> => {
-  const res = await apiFetch.get(`${apiEndpont.getTodoById}+${id}`).then((res) => res.json());
+  const res = await apiFetch.get(`${apiEndpont.getTodoById}${id}`).then((res) => res.json());
   return res.data;
 };
