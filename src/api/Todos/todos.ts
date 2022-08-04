@@ -12,3 +12,10 @@ export const apiGetTodos = async (): Promise<ApiGetTodosResponse> => {
 export const apiCreateTodo = async (params: TodoParams) => {
   return apiFetch.post(`${apiEndpont.createTodo}`, params);
 };
+
+export type ApiGetTodoById = Todo;
+
+export const apiGetTodoById = async (id: string | null): Promise<Todo> => {
+  const res = await apiFetch.get(`${apiEndpont.getTodoById}+${id}`).then((res) => res.json());
+  return res.data;
+};

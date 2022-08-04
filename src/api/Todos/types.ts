@@ -3,6 +3,7 @@ export interface Todo {
   content: string;
   createdAt: string;
   updatedAt: string;
+  id: string;
 }
 
 export interface TodoParams {

@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { apiCreateTodo, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
+import { apiCreateTodo, apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
 
 const Wrapper = styled.section``;
 
 function HomeScreen() {
-  const { data, refetch } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
+  const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
   const { mutate } = useMutation(apiCreateTodo);
+  const [selectedTodo, setSelecetedTodo] = useState<null | string>(null);
+  const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
+    ['getTodoById', selectedTodo],
+    () => apiGetTodoById(selectedTodo),
+    { enabled: false },
+  );
 
   const { register, handleSubmit } = useForm<TodoParams>();
 
@@ -21,11 +27,19 @@ function HomeScreen() {
     }
 
     const onSuccess = () => {
-      refetch();
+      refetchTodos();
     };
 
     mutate({ title, content }, { onSuccess });
   };
+
+  const showTodoDetail = (id: string) => {
+    setSelecetedTodo(id);
+  };
+
+  useEffect(() => {
+    refetchTodo();
+  }, [selectedTodo]);
 
   return (
     <Wrapper>
@@ -37,8 +51,12 @@ function HomeScreen() {
         </button>
       </form>
       <section>
-        <ul>{!!data?.length && data?.map((todo) => <TodoListCard {...todo} />)}</ul>
+        <ul>
+          {!!todosData?.length &&
+            todosData?.map((todo) => <TodoListCard key={todo.id} {...todo} onClick={() => showTodoDetail(todo.id)} />)}
+        </ul>
       </section>
+
     </Wrapper>
   );
 }
