@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import JoinScreen from './screen/JoinScreen';
+import SignUpScreen from './screen/SignUpScreen';
 import LoginScreen from './screen/LoginScreen';
 import { routes } from './screen/routes';
 
@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path={routes.home} element={<LoginScreen />} />
-          <Route path={routes.join} element={<JoinScreen />} />
+          <Route path={routes.join} element={<SignUpScreen />} />
         </Routes>
       </Router>
     </Wrapper>

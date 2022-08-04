@@ -24,7 +24,7 @@ const Wrapper = styled.section`
   }
 `;
 
-function JoinScreen() {
+function SignUpScreen() {
   const { register, getValues } = useForm();
   const navigate = useNavigate()
 
@@ -72,4 +72,4 @@ function JoinScreen() {
   );
 }
 
-export default JoinScreen;
+export default SignUpScreen;
