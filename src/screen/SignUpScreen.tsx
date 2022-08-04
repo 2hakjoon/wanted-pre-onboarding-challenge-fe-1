@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { apiSignUp, SignUpResponse } from '../api/Auth/signUp';
+import { emailPattern, passwordPattern } from '../common/constants/regex';
 
 const Wrapper = styled.section`
   display: flex;
@@ -23,9 +24,6 @@ const Wrapper = styled.section`
     padding: 20px;
   }
 `;
-
-const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-const passwordPattern = /^[A-Za-z0-9]{8,}$/;
 
 function SignUpScreen() {
   const { register, getValues, formState } = useForm({ mode: 'onChange', criteriaMode: 'all' });
