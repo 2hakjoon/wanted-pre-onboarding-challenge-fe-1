@@ -12,8 +12,8 @@ function TodoListCard({ title, createdAt, }: Todo) {
 
   return (
     <Wrapper>
-      <span>{title}</span>
-      <span>{createdAt}</span>
+      <span data-cy="text-todo-list-title">{title}</span>
+      <span data-cy="text-todo-list-createdAt">{createdAt}</span>
     </Wrapper>
   );
 }

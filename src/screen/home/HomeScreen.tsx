@@ -9,7 +9,7 @@ import { TodoParams } from '../../api/Todos/types';
 const Wrapper = styled.section``;
 
 function HomeScreen() {
-  const { data } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
+  const { data, refetch } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
   const { mutate } = useMutation(apiCreateTodo);
 
   const { register, handleSubmit } = useForm<TodoParams>();
@@ -21,7 +21,7 @@ function HomeScreen() {
     }
 
     const onSuccess = (data: any) => {
-      console.log(data);
+      refetch();
     };
 
     mutate({ title, content }, { onSuccess });
