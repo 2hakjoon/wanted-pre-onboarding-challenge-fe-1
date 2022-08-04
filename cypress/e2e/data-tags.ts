@@ -8,5 +8,6 @@ export const linkLogin = '[data-cy="link-login"]'
 export const linkJoin = '[data-cy="link-join"]'
 
 // Todo
-export const inputTodo = "[data-cy='input-todo']"
+export const inputTodoTitle = "[data-cy='input-todo-title']"
+export const inputTodoContent = "[data-cy='input-todo-content']"
 export const buttonSaveTodo= "[data-cy='button-save-todo']"

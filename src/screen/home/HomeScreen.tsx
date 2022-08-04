@@ -1,25 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useQuery } from '@tanstack/react-query';
-import { apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import { apiCreateTodo, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import TodoListCard from './component/TodoListCard';
+import { TodoParams } from '../../api/Todos/types';
 
 const Wrapper = styled.section``;
 
 function HomeScreen() {
   const { data } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
+  const { mutate } = useMutation(apiCreateTodo);
+
+  const { register, handleSubmit } = useForm<TodoParams>();
+
+  const saveTodoHandler = ({ title, content }: TodoParams) => {
+    if (title.trim().length === 0 || content.trim().length === 0) {
+      window.alert('내용을 모두 입력해주세요.');
+      return;
+    }
+
+    const onSuccess = (data: any) => {
+      console.log(data);
+    };
+
+    mutate({ title, content }, { onSuccess });
+  };
 
   return (
     <Wrapper>
-      <div>
-        <input placeholder="할 일을 입력 해 주세요." data-cy='input-todo'/>
-        <button type="submit" data-cy='button-save-todo'>저장</button>
-      </div>
-      <ul>
-        {!!data?.length  && data?.map((todo) => (
-          <TodoListCard {...todo} />
-        ))}
-      </ul>
+      <form onSubmit={handleSubmit(saveTodoHandler)}>
+        <input {...register('title')} placeholder="주제." data-cy="input-todo-title" />
+        <input {...register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />
+        <button type="submit" data-cy="button-save-todo">
+          저장
+        </button>
+      </form>
+      <ul>{!!data?.length && data?.map((todo) => <TodoListCard {...todo} />)}</ul>
     </Wrapper>
   );
 }
