@@ -88,7 +88,7 @@ describe('join process', ()=>{
     
     cy.get(inputEmail).should('exist').type(emailRandom)
     cy.get(inputPassword).should('exist').type(password)
-    cy.get(buttonJoin).should('exist').click();
+    cy.get(buttonJoin).should('exist').click() .should(() => expect(localStorage.getItem('TOKEN')).to.be.a('string'));;
     cy.on('window:alert',(t)=>{
       expect(t).to.contains('회원가입이 완료되었습니다.');
    })
