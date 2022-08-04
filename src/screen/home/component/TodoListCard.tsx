@@ -1,19 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Todo } from '../../../api/Todos/types';
 
 const Wrapper = styled.li`
   display: flex;
   flex-direction: column;
 `;
 
-interface TodoListCardProps {
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
-function TodoListCard({ title, content, createdAt, updatedAt }: TodoListCardProps) {
+function TodoListCard({ title, content, createdAt, updatedAt }: Todo) {
 
   return (
     <Wrapper>
