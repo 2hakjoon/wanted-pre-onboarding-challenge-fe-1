@@ -12,8 +12,8 @@ function HomeScreen() {
   return (
     <Wrapper>
       <div>
-        <input placeholder="할 일을 입력 해 주세요." />
-        <button type="submit">저장</button>
+        <input placeholder="할 일을 입력 해 주세요." data-cy='input-todo'/>
+        <button type="submit" data-cy='button-save-todo'>저장</button>
       </div>
       <ul>
         {data?.map((todo) => (
