@@ -20,7 +20,7 @@ function HomeScreen() {
       return;
     }
 
-    const onSuccess = (data: any) => {
+    const onSuccess = () => {
       refetch();
     };
 

@@ -1,5 +1,5 @@
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
-import { buttonSaveTodo, inputTodoContent, inputTodoTitle, textTodoListContent, textTodoListTitle } from '../data-tags';
+import { buttonSaveTodo, inputTodoContent, inputTodoTitle, textTodoListTitle } from '../data-tags';
 
 const testTitle = `테스트 타이틀${Math.random()}`;
 const testContent = `테스트 콘텐츠${Math.random()}`;
