@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { LoginParams, apiLogin, LoginResponse } from '../../api/Auth/login';
+import InputLabel from '../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
 const Wrapper = styled.section`
@@ -58,19 +59,19 @@ function LoginScreen() {
     <Wrapper>
       <form onSubmit={handleSubmit(loginHandler)}>
         <span className="text-head">로그인</span>
-        <input
-          {...register('email', { pattern: emailPattern })}
-          className="input"
+        <InputLabel
+          title="이메일"
+          register={register('email', { pattern: emailPattern })}
           data-cy="input-email"
           placeholder="이메일을 입력해주세요."
         />
-        <span>비밀번호</span>
-        <input
-          {...register('password', { pattern: passwordPattern })}
-          className="input"
+        <InputLabel
+          title="비밀번호"
           data-cy="input-password"
+          register={register('password', { pattern: passwordPattern })}
           placeholder="비밀번호를 입력해주세요."
         />
+
         <button className="btn-login" type="submit" data-cy="button-login" disabled={isFullFilled()}>
           로그인
         </button>
