@@ -12,6 +12,7 @@ const Wrapper = styled.ul`
   border-radius: 30px;
   margin-right: 50px;
   padding: 20px 20px;
+  overflow: scroll;
 `;
 
 function TodoListTemplate() {
