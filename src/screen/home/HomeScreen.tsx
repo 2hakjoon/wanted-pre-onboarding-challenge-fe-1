@@ -7,10 +7,33 @@ import { apiCreateTodo, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
 import TodoDetail from './component/TodoDetail';
+import InputBasic from '../../common/components/input/InputBasic';
+import ButtonBasic from '../../common/components/button/ButtonBasic';
 
 const Wrapper = styled.div`
+  width: 1000px;
+  padding-top: 50px;
   .wrapper-section {
     display: flex;
+    height: 100%;
+    padding: 20px;
+    > :first-child {
+      width: 30%;
+    }
+    > :nth-child(2) {
+      width: 70%;
+    }
+  }
+  form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    > * {
+      margin: 0 20px;
+    }
+    button {
+      flex-shrink: 0;
+    }
   }
 `;
 
@@ -39,11 +62,9 @@ function HomeScreen() {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(saveTodoHandler)}>
-        <input {...register('title')} placeholder="주제." data-cy="input-todo-title" />
-        <input {...register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />
-        <button type="submit" data-cy="button-save-todo">
-          저장
-        </button>
+        <InputBasic register={register('title')} placeholder="주제." data-cy="input-todo-title" />
+        <InputBasic register={register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />
+        <ButtonBasic title="저장" type="submit" data-cy="button-save-todo" />
       </form>
       <div className="wrapper-section">
         <section>
