@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { apiCreateTodo, apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
@@ -15,11 +16,11 @@ const Wrapper = styled.div`
 function HomeScreen() {
   const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
   const { mutate } = useMutation(apiCreateTodo);
-  const [selectedTodo, setSelecetedTodo] = useState<null | string>(null);
+  const { id: todoId } = useParams();
   const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
-    ['getTodoById', selectedTodo],
-    () => apiGetTodoById(selectedTodo),
-    { enabled: false },
+    ['getTodoById', todoId],
+    () => apiGetTodoById(todoId),
+    { enabled: !!todoId },
   );
 
   const { register, handleSubmit } = useForm<TodoParams>();
@@ -37,17 +38,6 @@ function HomeScreen() {
     mutate({ title, content }, { onSuccess });
   };
 
-  // Todo url도 변경되야함.
-  const showTodoDetail = (id: string) => {
-    setSelecetedTodo(id);
-  };
-
-  useEffect(() => {
-    if (selectedTodo) {
-      refetchTodo();
-    }
-  }, [selectedTodo]);
-
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(saveTodoHandler)}>
@@ -61,14 +51,7 @@ function HomeScreen() {
         <section>
           <ul data-cy="wrapper-todo-list">
             {!!todosData?.length &&
-              todosData?.map((todo, idx) => (
-                <TodoListCard
-                  data-cy={`wrapper-todo-${idx}`}
-                  key={todo.id}
-                  {...todo}
-                  onClick={() => showTodoDetail(todo.id)}
-                />
-              ))}
+              todosData?.map((todo, idx) => <TodoListCard data-cy={`wrapper-todo-${idx}`} key={todo.id} {...todo} />)}
           </ul>
         </section>
         {todoData && (
