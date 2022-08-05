@@ -40,7 +40,7 @@ function SignUpScreen() {
       if (token) {
         window.alert('회원가입이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
-        navigate('/');
+        navigate('/', { replace: true });
         window.location.reload();
       }
     };
