@@ -19,7 +19,7 @@ function HomeScreen() {
   const { mutate } = useMutation(apiCreateTodo);
   const { id: todoId } = useParams();
 
-  const { register, handleSubmit } = useForm<TodoParams>();
+  const { register, handleSubmit, setValue } = useForm<TodoParams>();
 
   const saveTodoHandler = ({ title, content }: TodoParams) => {
     if (title.trim().length === 0 || content.trim().length === 0) {
@@ -28,6 +28,8 @@ function HomeScreen() {
     }
 
     const onSuccess = () => {
+      setValue('content', '');
+      setValue('title', '');
       refetchTodos();
     };
 
