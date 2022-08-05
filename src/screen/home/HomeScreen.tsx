@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { apiCreateTodo, apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
+import TodoDetail from './component/TodoDetail';
 
 const Wrapper = styled.div`
   .wrapper-section {
@@ -17,11 +18,6 @@ function HomeScreen() {
   const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
   const { mutate } = useMutation(apiCreateTodo);
   const { id: todoId } = useParams();
-  const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
-    ['getTodoById', todoId],
-    () => apiGetTodoById(todoId),
-    { enabled: !!todoId },
-  );
 
   const { register, handleSubmit } = useForm<TodoParams>();
 
@@ -56,14 +52,7 @@ function HomeScreen() {
               ))}
           </ul>
         </section>
-        {todoData && (
-          <section>
-            <span data-cy="text-todo-detail-title">{todoData?.title}</span>
-            <span data-cy="text-todo-detail-content">{todoData?.content}</span>
-            <span data-cy="text-todo-detail-createdAt">{todoData?.createdAt}</span>
-            <span data-cy="text-todo-detail-updatedAt">{todoData?.updatedAt}</span>
-          </section>
-        )}
+        <TodoDetail refetchTodos={refetchTodos}/>
       </div>
     </Wrapper>
   );

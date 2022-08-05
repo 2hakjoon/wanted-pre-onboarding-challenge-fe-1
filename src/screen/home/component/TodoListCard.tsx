@@ -20,7 +20,6 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
   const { id: todoId } = useParams();
   const navigate = useNavigate();
 
-  // Todo 지우고 나서 refetch해야함
   const deleteTodoHandler = (e: any, id: string) => {
     e.stopPropagation();
 
