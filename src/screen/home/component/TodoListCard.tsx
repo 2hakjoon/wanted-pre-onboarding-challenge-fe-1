@@ -14,8 +14,12 @@ const Wrapper = styled.li`
   padding: 20px;
   border-radius: 20px;
   justify-content: space-between;
+  margin-bottom: 10px;
   &.select-card {
-    background-color: red;
+    background-color: skyblue;
+    span {
+      color: white;
+    }
   }
   > a {
     color: black;
