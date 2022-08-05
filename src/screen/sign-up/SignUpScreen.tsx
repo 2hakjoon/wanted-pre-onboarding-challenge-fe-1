@@ -49,7 +49,7 @@ function SignUpScreen() {
     mutate({ email, password }, { onSuccess });
   };
 
-  const isFullFilled = () => {
+  const isNotValild = () => {
     return (
       Boolean(formState.errors.email?.type) === true ||
       Boolean(formState.errors.password?.type) === true ||
@@ -74,7 +74,7 @@ function SignUpScreen() {
           register={register('password', { pattern: passwordPattern })}
           placeholder="비밀번호를 입력해주세요."
         />
-        <button disabled={isFullFilled()} className="btn-join" type="submit" data-cy="button-join">
+        <button disabled={isNotValild()} className="btn-join" type="submit" data-cy="button-join">
           회원가입
         </button>
         <a className="link-join" href="/" data-cy="link-login">

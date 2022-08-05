@@ -46,7 +46,7 @@ function LoginScreen() {
     mutate({ email, password }, { onSuccess });
   };
 
-  const isFullFilled = () => {
+  const isNotValild = () => {
     return (
       Boolean(formState.errors.email?.type) === true ||
       Boolean(formState.errors.password?.type) === true ||
@@ -72,7 +72,7 @@ function LoginScreen() {
           placeholder="비밀번호를 입력해주세요."
         />
 
-        <button className="btn-login" type="submit" data-cy="button-login" disabled={isFullFilled()}>
+        <button className="btn-login" type="submit" data-cy="button-login" disabled={isNotValild()}>
           로그인
         </button>
         <a className="link-join" href="/join" data-cy="link-join">
