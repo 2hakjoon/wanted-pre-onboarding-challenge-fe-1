@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { LoginParams, apiLogin, LoginResponse } from '../../api/Auth/login';
+import ButtonBasic from '../../common/components/button/ButtonBasic';
 import InputLabel from '../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
@@ -72,10 +73,7 @@ function LoginScreen() {
           register={register('password', { pattern: passwordPattern })}
           placeholder="비밀번호를 입력해주세요."
         />
-
-        <button className="btn-login" type="submit" data-cy="button-login" disabled={isNotValild()}>
-          로그인
-        </button>
+        <ButtonBasic title="로그인" type="submit" data-cy="button-login" disabled={isNotValild()} />
         <a className="link-join" href="/join" data-cy="link-join">
           회원가입하기
         </a>

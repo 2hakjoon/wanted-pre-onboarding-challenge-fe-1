@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { apiSignUp, SignUpParams, SignUpResponse } from '../../api/Auth/signUp';
+import ButtonBasic from '../../common/components/button/ButtonBasic';
 import InputLabel from '../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
 
@@ -75,9 +76,7 @@ function SignUpScreen() {
           register={register('password', { pattern: passwordPattern })}
           placeholder="비밀번호를 입력해주세요."
         />
-        <button disabled={isNotValild()} className="btn-join" type="submit" data-cy="button-join">
-          회원가입
-        </button>
+        <ButtonBasic title='회원가입' disabled={isNotValild()} type="submit" data-cy="button-join"/>
         <a className="link-join" href="/" data-cy="link-login">
           로그인하기
         </a>
