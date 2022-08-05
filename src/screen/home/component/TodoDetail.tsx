@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiGetTodoById, ApiGetTodoById, apiUpdateTodo } from '../../../api/Todos/todos';
+import { apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodosResponse, apiUpdateTodo } from '../../../api/Todos/todos';
 import { TodoParams } from '../../../api/Todos/types';
 
 const Wrapper = styled.article`
@@ -12,16 +12,13 @@ const Wrapper = styled.article`
   width: 100%;
 `;
 
-interface TodoDetail {
-  refetchTodos: () => void;
-}
-
-function TodoDetail({ refetchTodos }: TodoDetail) {
+function TodoDetail() {
   const { id: todoId } = useParams();
   if (!todoId) {
     return <>Todo를 선택해주세요.</>;
   }
 
+  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
   const { register, handleSubmit } = useForm<TodoParams>();
   const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
     ['getTodoById', todoId],
