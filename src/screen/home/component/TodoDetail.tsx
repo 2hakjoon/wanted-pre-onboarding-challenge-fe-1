@@ -7,11 +7,10 @@ const Wrapper = styled.article`
   flex-direction: column;
 `;
 
-
-function TodoDetail({ title, content, createdAt, updatedAt}: Todo) {
-
+function TodoDetail({ id, title, content, createdAt, updatedAt }: Todo) {
   return (
     <Wrapper>
+      <button type='button'>수정</button>
       <span>{title}</span>
       <span>{content}</span>
       <span>{createdAt}</span>

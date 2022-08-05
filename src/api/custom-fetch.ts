@@ -26,4 +26,13 @@ export const apiFetch = {
         Authorization: localStorage.getItem(authToken) || '',
       },
     }),
+  put: (url: string, body: object) =>
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(authToken) || '',
+      },
+      body: JSON.stringify(body),
+    }),
 };
