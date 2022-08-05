@@ -18,14 +18,14 @@ const Wrapper = styled.div`
   }
 `;
 
-interface InputLabel {
+interface InputLabelProps {
   title: string;
   register: UseFormRegisterReturn<string>;
   placeholder: string;
   type?: HTMLInputTypeAttribute | undefined;
 }
 
-function InputLabel({ title, register, placeholder, type, ...rest }: InputLabel) {
+function InputLabel({ title, register, placeholder, type, ...rest }: InputLabelProps) {
   return (
     <Wrapper {...rest}>
       <span>{title}</span>
