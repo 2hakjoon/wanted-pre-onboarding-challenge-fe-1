@@ -11,10 +11,11 @@ import TodoListTemplate from './template/TodoListTemplate';
 
 const Wrapper = styled.div`
   width: 1000px;
+  height: 100vh;
   padding-top: 50px;
   .wrapper-outer {
     display: flex;
-    height: 100%;
+    height: 90%;
     padding: 20px;
     > :first-child {
       width: 30%;
