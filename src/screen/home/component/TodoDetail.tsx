@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { apiGetTodoById, ApiGetTodoById, apiUpdateTodo } from '../../../api/Todos/todos';
-import { Todo, TodoParams } from '../../../api/Todos/types';
+import { TodoParams } from '../../../api/Todos/types';
 
 const Wrapper = styled.article`
   display: flex;

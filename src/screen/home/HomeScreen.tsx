@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { apiCreateTodo, apiGetTodoById, ApiGetTodoById, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
+import { apiCreateTodo, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import TodoListCard from './component/TodoListCard';
 import { TodoParams } from '../../api/Todos/types';
 import TodoDetail from './component/TodoDetail';
@@ -47,12 +47,10 @@ function HomeScreen() {
         <section>
           <ul data-cy="wrapper-todo-list">
             {!!todosData?.length &&
-              todosData?.map((todo, idx) => (
-                <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} />
-              ))}
+              todosData?.map((todo) => <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} />)}
           </ul>
         </section>
-        <TodoDetail refetchTodos={refetchTodos}/>
+        <TodoDetail refetchTodos={refetchTodos} />
       </div>
     </Wrapper>
   );

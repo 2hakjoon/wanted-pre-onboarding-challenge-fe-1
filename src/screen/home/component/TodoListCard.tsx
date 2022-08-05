@@ -20,7 +20,7 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
   const { id: todoId } = useParams();
   const navigate = useNavigate();
 
-  const deleteTodoHandler = (e: any, id: string) => {
+  const deleteTodoHandler = (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.stopPropagation();
 
     const onSuccess = () => {
