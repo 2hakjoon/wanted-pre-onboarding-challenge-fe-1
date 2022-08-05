@@ -12,7 +12,7 @@ const Wrapper = styled.article`
   width: 100%;
 `;
 
-function TodoDetail() {
+function TodoDetailTemplate() {
   const { id: todoId } = useParams();
   if (!todoId) {
     return <>Todo를 선택해주세요.</>;
@@ -79,4 +79,4 @@ function TodoDetail() {
   );
 }
 
-export default TodoDetail;
+export default TodoDetailTemplate;

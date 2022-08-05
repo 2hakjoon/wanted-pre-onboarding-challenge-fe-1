@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { apiCreateTodo, apiGetTodos, ApiGetTodosResponse } from '../../api/Todos/todos';
 import { TodoParams } from '../../api/Todos/types';
-import TodoDetail from './component/TodoDetail';
+import TodoDetailTemplate from './template/TodoDetailTemplate';
 import InputBasic from '../../common/components/input/InputBasic';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import TodoListTemplate from './template/TodoListTemplate';
@@ -66,7 +66,7 @@ function HomeScreen() {
       </form>
       <div className="wrapper-outer">
         <TodoListTemplate />
-        <TodoDetail />
+        <TodoDetailTemplate />
       </div>
     </Wrapper>
   );
