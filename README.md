@@ -11,6 +11,11 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
   * Cypress
   * Styled Component
 
+## 설치 및 실행
+  ``` bash
+  yarn 
+  yarn start
+  ```
 
 ## 과제 구현 내용
 ### Assignment 1 - Login / SignUp
@@ -42,12 +47,16 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
   - [x] 수정되는 Todo의 내용이 목록에서도 실시간으로 반영됨.
 
 
-## Cypress 테스트
-cypress 실행.
-``` bash
-npx cypress open
-```
-테스트를 하기 위해서는 초기 데이터 셋팅이 필요합니다.
+## Cypress e2e 테스트
+1. e2e 테스트를 하기 앞서서 react서버를 실행시킵니다.
+  ``` bash
+  yarn start
+  ```
+2. cypress 실행.
+  ``` bash
+  npx cypress open
+  ```
+3. 초기 데이터 셋팅.
   * auth
     * 아레의 테스트 계정을 미리 회원가입해주세요. login 테스트에 필요합니다.
     ```javascript
