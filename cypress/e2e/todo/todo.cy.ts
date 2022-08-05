@@ -16,6 +16,7 @@ import {
   textTodoDetailTitle,
   textTodoDetailUpdatedAt,
   textTodoListTitle,
+  wrapperTodoCard,
 } from '../data-tags';
 
 const testTitle = `테스트 타이틀${Math.random()}`;
@@ -79,6 +80,13 @@ describe('get todo detail', () => {
     cy.get(textTodoDetailCreatedAt).should('not.exist');
     cy.get(textTodoDetailUpdatedAt).should('not.exist');
   });
+
+  it('should change backgournd color of card', ()=>{
+    cy.visit('/');
+
+    cy.get(linkTodoDetail).should('exist').click();
+    cy.get(wrapperTodoCard).should('exist').should('have.class', 'select-card')
+  })
 
   it('should render todo detail', () => {
     cy.visit('/');
