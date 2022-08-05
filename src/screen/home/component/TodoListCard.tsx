@@ -9,13 +9,17 @@ import { routes } from '../../routes';
 const Wrapper = styled.li`
   display: flex;
   flex-direction: column;
+  &.select-card {
+    background-color: red;
+  }
 `;
 
 interface TodoListCardProps extends Todo {
   refetchTodos: () => void;
+  selected: boolean;
 }
 
-function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps) {
+function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoListCardProps) {
   const { mutate } = useMutation(apiDeleteTodo);
   const { id: todoId } = useParams();
   const navigate = useNavigate();
@@ -34,7 +38,7 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-cy="wrapper-todo-card" className={`${selected ? 'select-card' : ''}`}>
       <Link to={routes.home + id} data-cy="link-todo-detail">
         <span data-cy="text-todo-list-title">{title}</span>
         <span data-cy="text-todo-list-createdAt">{createdAt}</span>

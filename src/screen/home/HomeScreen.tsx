@@ -47,7 +47,9 @@ function HomeScreen() {
         <section>
           <ul data-cy="wrapper-todo-list">
             {!!todosData?.length &&
-              todosData?.map((todo) => <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} />)}
+              todosData?.map((todo) => (
+                <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} selected={todoId === todo.id} />
+              ))}
           </ul>
         </section>
         <TodoDetail refetchTodos={refetchTodos} />
