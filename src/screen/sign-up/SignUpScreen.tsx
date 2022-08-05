@@ -71,6 +71,7 @@ function SignUpScreen() {
         <InputLabel
           title="비밀번호"
           data-cy="input-password"
+          type="password"
           register={register('password', { pattern: passwordPattern })}
           placeholder="비밀번호를 입력해주세요."
         />
