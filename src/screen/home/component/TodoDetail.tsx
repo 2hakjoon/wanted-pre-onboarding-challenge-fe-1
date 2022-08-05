@@ -29,13 +29,13 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
   );
   const { mutate } = useMutation(apiUpdateTodo);
 
-  const [editMode, setEditmode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   const onEditMode = () => {
-    setEditmode(true);
+    setEditMode(true);
   };
   const closeEditMode = () => {
-    setEditmode(false);
+    setEditMode(false);
   };
 
   const handleUpdateTodo = ({ title, content }: TodoParams) => {
@@ -44,6 +44,7 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
       return;
     }
     const onSuccess = () => {
+      setEditMode(false)
       refetchTodos();
       refetchTodo();
     };
