@@ -24,3 +24,13 @@ export const apiDeleteTodo = async (id: string) => {
   const res = await apiFetch.delete(`${apiEndpont.deleteTodo}${id}`).then((res) => res.json());
   return res.data;
 };
+
+export interface ApiUpdateTodoArgs {
+  id: string;
+  params: TodoParams;
+}
+
+export const apiUpdateTodo = async ({ id, params }: ApiUpdateTodoArgs): Promise<Todo> => {
+  const res = await apiFetch.put(`${apiEndpont.deleteTodo}${id}`, params).then((res) => res.json());
+  return res.data;
+};
