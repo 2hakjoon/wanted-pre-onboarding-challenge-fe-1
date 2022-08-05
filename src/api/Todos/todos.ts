@@ -19,3 +19,8 @@ export const apiGetTodoById = async (id: string | null): Promise<Todo> => {
   const res = await apiFetch.get(`${apiEndpont.getTodoById}${id}`).then((res) => res.json());
   return res.data;
 };
+
+export const apiDeleteTodo = async (id: string) => {
+  const res = await apiFetch.delete(`${apiEndpont.deleteTodo}${id}`).then((res) => res.json());
+  return res.data;
+};

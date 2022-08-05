@@ -58,7 +58,7 @@ function HomeScreen() {
       </form>
       <div className="wrapper-section">
         <section>
-          <ul>
+          <ul data-cy="wrapper-todo-list">
             {!!todosData?.length &&
               todosData?.map((todo, idx) => (
                 <TodoListCard

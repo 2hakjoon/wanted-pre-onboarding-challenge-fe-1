@@ -18,4 +18,12 @@ export const apiFetch = {
       },
       body: JSON.stringify(body),
     }),
+  delete: (url: string) =>
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(authToken) || '',
+      },
+    }),
 };

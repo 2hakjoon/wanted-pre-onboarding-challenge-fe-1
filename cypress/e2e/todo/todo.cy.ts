@@ -1,5 +1,6 @@
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
 import {
+  buttonDeleteTodo,
   buttonSaveTodo,
   inputTodoContent,
   inputTodoTitle,
@@ -78,5 +79,23 @@ describe('get todo detail', () => {
     cy.get(textTodoDetailContent).should('exist');
     cy.get(textTodoDetailCreatedAt).should('exist');
     cy.get(textTodoDetailUpdatedAt).should('exist');
+  });
+});
+
+describe('delete todo', () => {
+  beforeEach(() => {
+    injectAuthTokenToLocalstorage();
+  });
+
+  it('should visit home', () => {
+    cy.visit('/');
+  });
+
+  it('should create and delete', () => {
+    cy.visit('/');
+
+    cy.contains(textTodoListTitle, testTitle);
+    cy.get(buttonDeleteTodo).should('exist').click();
+    cy.contains(textTodoListTitle).should('not.exist');
   });
 });
