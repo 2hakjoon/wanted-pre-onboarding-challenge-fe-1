@@ -9,6 +9,7 @@ import { TodoParams } from '../../../api/Todos/types';
 const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 interface TodoDetail {
@@ -44,7 +45,7 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
       return;
     }
     const onSuccess = () => {
-      setEditMode(false)
+      setEditMode(false);
       refetchTodos();
       refetchTodo();
     };
@@ -61,8 +62,8 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
             </button>
           ) : (
             <form onSubmit={handleSubmit(handleUpdateTodo)}>
-              <input {...register("title")} placeholder={todoData.title} data-cy="input-edit-todo-title" />
-              <input {...register("content")} placeholder={todoData.content} data-cy="input-edit-todo-content" />
+              <input {...register('title')} placeholder={todoData.title} data-cy="input-edit-todo-title" />
+              <input {...register('content')} placeholder={todoData.content} data-cy="input-edit-todo-content" />
               <button type="button" data-cy="button-edit-cancel" onClick={closeEditMode}>
                 취소
               </button>
