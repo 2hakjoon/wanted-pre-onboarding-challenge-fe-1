@@ -16,6 +16,7 @@ interface TodoListCardProps extends Todo {
 function TodoListCard({ id, title, createdAt, ...rest }: TodoListCardProps) {
   const { mutate } = useMutation(apiDeleteTodo);
 
+  // Todo 지우고 나서 refetch해야함
   const deleteTodoHandler = (e: any, id: string) => {
     e.stopPropagation();
     mutate(id);

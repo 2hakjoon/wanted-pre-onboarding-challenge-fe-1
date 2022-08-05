@@ -37,6 +37,7 @@ function HomeScreen() {
     mutate({ title, content }, { onSuccess });
   };
 
+  // Todo url도 변경되야함.
   const showTodoDetail = (id: string) => {
     setSelecetedTodo(id);
   };
