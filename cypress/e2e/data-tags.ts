@@ -20,3 +20,8 @@ export const textTodoDetailUpdatedAt = '[data-cy="text-todo-detail-updatedAt"]'
 export const buttonDeleteTodo = '[data-cy="button-delete-todo"]'
 export const wrapperTodoList = "[data-cy={'wrapper-todo-list']"
 export const linkTodoDetail = '[data-cy="link-todo-detail"]'
+export const buttonEditMode = '[data-cy="button-edit-mode"]'
+export const inputEditTodoTitle = '[data-cy="input-edit-todo-title"]'
+export const inputEditTodoContent = '[data-cy="input-edit-todo-content"]'
+export const buttonEditCancel = '[data-cy="button-edit-cancel"]'
+export const buttonEditSave = '[data-cy="button-edit-save"]'

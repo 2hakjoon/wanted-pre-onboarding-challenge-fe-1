@@ -31,6 +31,13 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
 
   const [editMode, setEditmode] = useState(false);
 
+  const onEditMode = () => {
+    setEditmode(true);
+  };
+  const closeEditMode = () => {
+    setEditmode(false);
+  };
+
   const handleUpdateTodo = ({ title, content }: TodoParams) => {
     if (title.length === 0 || content.length === 0) {
       window.alert('내용을 입력해주세요.');
@@ -47,13 +54,20 @@ function TodoDetail({ refetchTodos }: TodoDetail) {
     <Wrapper>
       {todoData && (
         <>
-          <button type="button" data-cy="button-edit-mode">수정</button>
-          {editMode && (
-            <form>
-              <input placeholder={todoData.title} data-cy="input-edit-todo-title" />
-              <input placeholder={todoData.content} data-cy="input-edit-todo-content"/>
-              <button type="button" data-cy="button-edit-cancel">취소</button>
-              <button type="submit" data-cy="button-edit-save">저장</button>
+          {!editMode ? (
+            <button type="button" data-cy="button-edit-mode" onClick={onEditMode}>
+              수정
+            </button>
+          ) : (
+            <form onSubmit={handleSubmit(handleUpdateTodo)}>
+              <input {...register("title")} placeholder={todoData.title} data-cy="input-edit-todo-title" />
+              <input {...register("content")} placeholder={todoData.content} data-cy="input-edit-todo-content" />
+              <button type="button" data-cy="button-edit-cancel" onClick={closeEditMode}>
+                취소
+              </button>
+              <button type="submit" data-cy="button-edit-save">
+                저장
+              </button>
             </form>
           )}
           <span data-cy="text-todo-detail-title">{todoData.title}</span>

@@ -2,7 +2,12 @@ import { routes } from '../../../src/screen/routes';
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
 import {
   buttonDeleteTodo,
+  buttonEditCancel,
+  buttonEditMode,
+  buttonEditSave,
   buttonSaveTodo,
+  inputEditTodoContent,
+  inputEditTodoTitle,
   inputTodoContent,
   inputTodoTitle,
   linkTodoDetail,
@@ -15,6 +20,8 @@ import {
 
 const testTitle = `테스트 타이틀${Math.random()}`;
 const testContent = `테스트 콘텐츠${Math.random()}`;
+const editTitle = "수정된 타이틀"
+const editContent = "수정된 내용"
 
 describe('create todo', () => {
   beforeEach(() => {
@@ -86,6 +93,61 @@ describe('get todo detail', () => {
   });
 });
 
+describe('update todo', () => {
+  beforeEach(() => {
+    injectAuthTokenToLocalstorage();
+  });
+
+  it('should visit home', () => {
+    cy.visit('/');
+  });
+
+  it('should render edit button', () => {
+    cy.visit('/');
+  
+    cy.get(linkTodoDetail).should('exist').click();
+
+    cy.get(buttonEditMode).should('exist');
+  });
+
+  it('should render inputs when click edit button', () => {
+    cy.visit('/');
+    
+    cy.get(linkTodoDetail).should('exist').click();
+
+    cy.get(buttonEditMode).should('exist').click();
+    cy.get(inputEditTodoTitle).should('exist');
+    cy.get(inputEditTodoContent).should('exist');
+  });
+
+  it('should render off edit mode when click cancle edit button', () => {
+    cy.visit('/');
+    
+    cy.get(linkTodoDetail).should('exist').click();
+
+    cy.get(buttonEditMode).should('exist').click();
+    cy.get(inputEditTodoTitle).should('exist');
+    cy.get(inputEditTodoContent).should('exist');
+    cy.get(buttonEditCancel).should('exist').click();
+    cy.get(inputEditTodoTitle).should('not.exist');
+    cy.get(inputEditTodoContent).should('not.exist');
+  });
+
+  it('should update detail', () => {
+    cy.visit('/');
+
+    cy.get(linkTodoDetail).should('exist').click();
+
+    cy.get(buttonEditMode).should('exist').click();
+    cy.get(inputEditTodoTitle).should('exist').type(editTitle);
+    cy.get(inputEditTodoContent).should('exist').type(editContent);
+    cy.get(buttonEditSave).should('exist').click();
+    cy.get(textTodoDetailTitle).should('exist').should('have.text',editTitle)
+    cy.get(textTodoDetailContent).should('exist').should('have.text',editContent)
+
+  });
+});
+
 describe('delete todo', () => {
   beforeEach(() => {
     injectAuthTokenToLocalstorage();
@@ -95,11 +157,12 @@ describe('delete todo', () => {
     cy.visit('/');
   });
 
-  it('should create and delete', () => {
+  it('should delete successfully', () => {
     cy.visit('/');
 
-    cy.contains(textTodoListTitle, testTitle);
+    cy.contains(textTodoListTitle, editTitle);
     cy.get(buttonDeleteTodo).should('exist').click();
     cy.get(textTodoListTitle).should('not.exist');
   });
 });
+
