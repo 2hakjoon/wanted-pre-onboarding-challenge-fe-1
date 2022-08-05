@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { apiDeleteTodo } from '../../../api/Todos/todos';
 import { Todo } from '../../../api/Todos/types';
@@ -11,18 +11,32 @@ const Wrapper = styled.li`
   flex-direction: column;
 `;
 
-function TodoListCard({ id, title, createdAt, ...rest }: Todo) {
+interface TodoListCardProps extends Todo {
+  refetchTodos: () => void;
+}
+
+function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps) {
   const { mutate } = useMutation(apiDeleteTodo);
+  const { id: todoId } = useParams();
+  const navigate = useNavigate();
 
   // Todo 지우고 나서 refetch해야함
   const deleteTodoHandler = (e: any, id: string) => {
     e.stopPropagation();
-    mutate(id);
+
+    const onSuccess = () => {
+      if (id === todoId) {
+        navigate('/', { replace: true });
+      }
+      refetchTodos();
+    };
+
+    mutate(id, { onSuccess });
   };
 
   return (
     <Wrapper>
-      <Link to={routes.home + id}>
+      <Link to={routes.home + id} data-cy="link-todo-detail">
         <span data-cy="text-todo-list-title">{title}</span>
         <span data-cy="text-todo-list-createdAt">{createdAt}</span>
       </Link>

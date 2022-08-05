@@ -1,9 +1,11 @@
+import { routes } from '../../../src/screen/routes';
 import { injectAuthTokenToLocalstorage } from '../custom-actions';
 import {
   buttonDeleteTodo,
   buttonSaveTodo,
   inputTodoContent,
   inputTodoTitle,
+  linkTodoDetail,
   textTodoDetailContent,
   textTodoDetailCreatedAt,
   textTodoDetailTitle,
@@ -74,7 +76,9 @@ describe('get todo detail', () => {
   it('should render todo detail', () => {
     cy.visit('/');
 
-    cy.get('[data-cy="wrapper-todo-0"]').should('exist').click();
+    cy.get(linkTodoDetail).should('exist').click();
+
+    cy.url().should('not.eq', Cypress.config().baseUrl + routes.home);
     cy.get(textTodoDetailTitle).should('exist');
     cy.get(textTodoDetailContent).should('exist');
     cy.get(textTodoDetailCreatedAt).should('exist');
@@ -96,6 +100,6 @@ describe('delete todo', () => {
 
     cy.contains(textTodoListTitle, testTitle);
     cy.get(buttonDeleteTodo).should('exist').click();
-    cy.contains(textTodoListTitle).should('not.exist');
+    cy.get(textTodoListTitle).should('not.exist');
   });
 });

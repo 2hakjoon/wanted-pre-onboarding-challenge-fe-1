@@ -19,3 +19,4 @@ export const textTodoDetailCreatedAt = '[data-cy="text-todo-detail-createdAt"]'
 export const textTodoDetailUpdatedAt = '[data-cy="text-todo-detail-updatedAt"]'
 export const buttonDeleteTodo = '[data-cy="button-delete-todo"]'
 export const wrapperTodoList = "[data-cy={'wrapper-todo-list']"
+export const linkTodoDetail = '[data-cy="link-todo-detail"]'
