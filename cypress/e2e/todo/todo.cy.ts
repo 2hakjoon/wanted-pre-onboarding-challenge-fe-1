@@ -52,13 +52,15 @@ describe('create todo', () => {
     });
   });
 
-  it('should create todo and refetch todo list', () => {
+  it('should create todo and refetch todo list and empty input', () => {
     cy.visit('/');
 
     cy.get(inputTodoTitle).should('exist').type(testTitle);
     cy.get(inputTodoContent).should('exist').type(testContent);
     cy.get(buttonSaveTodo).should('exist').click();
 
+    cy.get(inputTodoTitle).should('exist').should('have.value',"");
+    cy.get(inputTodoContent).should('exist').should('have.value',"");;
     cy.contains(textTodoListTitle, testTitle);
   });
 });
