@@ -1,16 +1,28 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 import styled from 'styled-components';
 import { apiDeleteTodo } from '../../../api/Todos/todos';
 import { Todo } from '../../../api/Todos/types';
 import { routes } from '../../routes';
+import ButtonBasic from '../../../common/components/button/ButtonBasic';
 
 const Wrapper = styled.li`
   display: flex;
-  flex-direction: column;
+  border: 2px solid darkgray;
+  padding: 20px;
+  border-radius: 20px;
+  justify-content: space-between;
   &.select-card {
     background-color: red;
+  }
+  > a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 
@@ -41,11 +53,9 @@ function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoList
     <Wrapper data-cy="wrapper-todo-card" className={`${selected ? 'select-card' : ''}`}>
       <Link to={routes.home + id} data-cy="link-todo-detail">
         <span data-cy="text-todo-list-title">{title}</span>
-        <span data-cy="text-todo-list-createdAt">{createdAt}</span>
+        <span data-cy="text-todo-list-createdAt">{`${dayjs(createdAt).format('YYYY/MM/DD')}`}</span>
       </Link>
-      <button type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodoHandler(e, id)}>
-        X
-      </button>
+      <ButtonBasic title="X" type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodoHandler(e, id)} />
     </Wrapper>
   );
 }
