@@ -130,7 +130,7 @@ describe('update todo', () => {
     cy.get(inputEditTodoContent).should('exist');
   });
 
-  it('should render off edit mode when click cancle edit button', () => {
+  it('should not render edit mode when click cancel edit button', () => {
     cy.visit('/');
     
     cy.get(linkTodoDetail).should('exist').click();
@@ -143,7 +143,7 @@ describe('update todo', () => {
     cy.get(inputEditTodoContent).should('not.exist');
   });
 
-  it('should update detail', () => {
+  it('should update detail and off edit mode', () => {
     cy.visit('/');
 
     cy.get(linkTodoDetail).should('exist').click();
@@ -154,6 +154,8 @@ describe('update todo', () => {
     cy.get(buttonEditSave).should('exist').click();
     cy.get(textTodoDetailTitle).should('exist').should('have.text',editTitle)
     cy.get(textTodoDetailContent).should('exist').should('have.text',editContent)
+    cy.get(inputEditTodoTitle).should('not.exist');
+    cy.get(inputEditTodoContent).should('not.exist');
 
   });
 });
