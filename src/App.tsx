@@ -27,7 +27,7 @@ function App() {
               <Route path={routes.join} element={<SignUpScreen />} />
             </>
           ) : (
-            <Route path={routes.home} element={<HomeScreen />} />
+            <Route path={routes.todo} element={<HomeScreen />} />
           )}
         </Routes>
       </Router>
