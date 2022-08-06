@@ -8,14 +8,21 @@ import TodoDetailTemplate from './template/TodoDetailTemplate';
 import InputBasic from '../../common/components/input/InputBasic';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import TodoListTemplate from './template/TodoListTemplate';
+import ButtonLogOut from './component/ButtonLogOut';
 
 const Wrapper = styled.div`
   width: 1000px;
   height: 100vh;
   padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  >:first-child{
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
   .wrapper-outer {
     display: flex;
-    height: 90%;
+    height: 80%;
     padding: 20px;
     > :first-child {
       width: 30%;
@@ -59,6 +66,7 @@ function HomeScreen() {
 
   return (
     <Wrapper>
+      <ButtonLogOut/>
       <form onSubmit={handleSubmit(saveTodoHandler)}>
         <InputBasic register={register('title')} placeholder="주제." data-cy="input-todo-title" />
         <InputBasic register={register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />
