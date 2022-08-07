@@ -1,11 +1,11 @@
-import { apiFetch } from '../custom-fetch';
+import { apiFetch, FetchResponse } from '../custom-fetch';
 import { apiEndpont } from '../endpoints';
 import { Todo, TodoParams } from './types';
 
 export type ApiGetTodosResponse = Todo[];
 
 export const apiGetTodos = async (): Promise<ApiGetTodosResponse> => {
-  const res = await apiFetch.get(`${apiEndpont.getTodos}`).then((res) => res.json());
+  const res = await apiFetch.get<FetchResponse<ApiGetTodosResponse>>(`${apiEndpont.getTodos}`);
   return res.data;
 };
 
@@ -16,13 +16,12 @@ export const apiCreateTodo = async (params: TodoParams) => {
 export type ApiGetTodoById = Todo;
 
 export const apiGetTodoById = async (id: string | undefined): Promise<Todo> => {
-  const res = await apiFetch.get(`${apiEndpont.getTodoById}${id}`).then((res) => res.json());
+  const res = await apiFetch.get<FetchResponse<Todo>>(`${apiEndpont.getTodoById}${id}`);
   return res.data;
 };
 
 export const apiDeleteTodo = async (id: string) => {
-  const res = await apiFetch.delete(`${apiEndpont.deleteTodo}${id}`).then((res) => res.json());
-  return res.data;
+  return apiFetch.delete(`${apiEndpont.deleteTodo}${id}`);
 };
 
 export interface ApiUpdateTodoArgs {
@@ -31,6 +30,6 @@ export interface ApiUpdateTodoArgs {
 }
 
 export const apiUpdateTodo = async ({ id, params }: ApiUpdateTodoArgs): Promise<Todo> => {
-  const res = await apiFetch.put(`${apiEndpont.deleteTodo}${id}`, params).then((res) => res.json());
+  const res = await apiFetch.put<FetchResponse<Todo>>(`${apiEndpont.deleteTodo}${id}`, params);
   return res.data;
 };

@@ -1,3 +1,4 @@
+import { apiFetch } from '../custom-fetch';
 import { apiEndpont } from '../endpoints';
 
 export interface LoginParams {
@@ -11,12 +12,6 @@ export interface LoginResponse {
   details?: string;
 }
 
-export const apiLogin = async (body: LoginParams): Promise<LoginResponse> => {
-  return fetch(apiEndpont.login, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  }).then((res) => res.json());
+export const apiLogin = async (body: LoginParams) => {
+  return apiFetch.post<LoginResponse>(apiEndpont.login,body)
 };
