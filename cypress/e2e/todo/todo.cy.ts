@@ -21,8 +21,8 @@ import {
 
 const testTitle = `테스트 타이틀${Math.random()}`;
 const testContent = `테스트 콘텐츠${Math.random()}`;
-const editTitle = "수정된 타이틀"
-const editContent = "수정된 내용"
+const editTitle = '수정된 타이틀';
+const editContent = '수정된 내용';
 
 describe('create todo', () => {
   beforeEach(() => {
@@ -59,8 +59,8 @@ describe('create todo', () => {
     cy.get(inputTodoContent).should('exist').type(testContent);
     cy.get(buttonSaveTodo).should('exist').click();
 
-    cy.get(inputTodoTitle).should('exist').should('have.value',"");
-    cy.get(inputTodoContent).should('exist').should('have.value',"");;
+    cy.get(inputTodoTitle).should('exist').should('have.value', '');
+    cy.get(inputTodoContent).should('exist').should('have.value', '');
     cy.contains(textTodoListTitle, testTitle);
   });
 });
@@ -83,12 +83,12 @@ describe('get todo detail', () => {
     cy.get(textTodoDetailUpdatedAt).should('not.exist');
   });
 
-  it('should change backgournd color of card', ()=>{
+  it('should change backgournd color of card', () => {
     cy.visit('/');
 
     cy.get(linkTodoDetail).should('exist').click();
-    cy.get(wrapperTodoCard).should('exist').should('have.class', 'select-card')
-  })
+    cy.get(wrapperTodoCard).should('exist').should('have.class', 'select-card');
+  });
 
   it('should render todo detail', () => {
     cy.visit('/');
@@ -114,7 +114,7 @@ describe('update todo', () => {
 
   it('should render edit button', () => {
     cy.visit('/');
-  
+
     cy.get(linkTodoDetail).should('exist').click();
 
     cy.get(buttonEditMode).should('exist');
@@ -122,7 +122,7 @@ describe('update todo', () => {
 
   it('should render inputs when click edit button', () => {
     cy.visit('/');
-    
+
     cy.get(linkTodoDetail).should('exist').click();
 
     cy.get(buttonEditMode).should('exist').click();
@@ -132,7 +132,7 @@ describe('update todo', () => {
 
   it('should not render edit mode when click cancel edit button', () => {
     cy.visit('/');
-    
+
     cy.get(linkTodoDetail).should('exist').click();
 
     cy.get(buttonEditMode).should('exist').click();
@@ -152,11 +152,10 @@ describe('update todo', () => {
     cy.get(inputEditTodoTitle).should('exist').type(editTitle);
     cy.get(inputEditTodoContent).should('exist').type(editContent);
     cy.get(buttonEditSave).should('exist').click();
-    cy.get(textTodoDetailTitle).should('exist').should('have.text',editTitle)
-    cy.get(textTodoDetailContent).should('exist').should('have.text',editContent)
+    cy.get(textTodoDetailTitle).should('exist').should('contain.text', editTitle);
+    cy.get(textTodoDetailContent).should('exist').should('contain.text', editContent);
     cy.get(inputEditTodoTitle).should('not.exist');
     cy.get(inputEditTodoContent).should('not.exist');
-
   });
 });
 
@@ -177,4 +176,3 @@ describe('delete todo', () => {
     cy.get(textTodoListTitle).should('not.exist');
   });
 });
-
