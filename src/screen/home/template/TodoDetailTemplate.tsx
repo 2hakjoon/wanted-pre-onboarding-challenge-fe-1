@@ -13,6 +13,7 @@ import {
 } from '../../../api/Todos/todos';
 import { TodoParams } from '../../../api/Todos/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
+import InputBasic from '../../../common/components/input/InputBasic';
 
 const Wrapper = styled.article`
   width: 100%;
@@ -24,6 +25,18 @@ const Wrapper = styled.article`
   padding: 20px 20px;
   .button-edit-mode {
     align-self: flex-end;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    >*{
+      margin-bottom: 10px;
+    }
+    div{
+      >:first-child{
+        margin-right: 40px;
+      }
+    }
   }
 `;
 
@@ -78,10 +91,16 @@ function TodoDetailTemplate() {
             />
           ) : (
             <form onSubmit={handleSubmit(handleUpdateTodo)}>
-              <input {...register('title')} placeholder={todoData.title} data-cy="input-edit-todo-title" />
-              <input {...register('content')} placeholder={todoData.content} data-cy="input-edit-todo-content" />
-              <ButtonBasic title="취소" type="button" data-cy="button-edit-cancel" onClick={closeEditMode} />
-              <ButtonBasic title="저장" type="submit" data-cy="button-edit-save" />
+              <InputBasic register={register('title')} placeholder={todoData.title} data-cy="input-edit-todo-title" />
+              <InputBasic
+                register={register('content')}
+                placeholder={todoData.content}
+                data-cy="input-edit-todo-content"
+              />
+              <div>
+                <ButtonBasic title="취소" type="button" data-cy="button-edit-cancel" onClick={closeEditMode} />
+                <ButtonBasic title="저장" type="submit" data-cy="button-edit-save" />
+              </div>
             </form>
           )}
           <span data-cy="text-todo-detail-title">제목 : {todoData.title}</span>
