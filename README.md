@@ -17,6 +17,16 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
   yarn start
   ```
 
+## 결과물 미리보기
+### Todo
+![localhost_3001_](https://user-images.githubusercontent.com/61589338/183292545-2787a57b-a5ee-4fcb-87f6-d3904b25ba85.png)
+### Login
+![localhost_3001_ (1)](https://user-images.githubusercontent.com/61589338/183292595-c2e0006e-8033-4ac7-ba44-b92230f53060.png)
+
+### Join
+![localhost_3001_join](https://user-images.githubusercontent.com/61589338/183292628-d7911985-3dee-4d93-8566-e8c5d2668f35.png)
+
+
 ## 과제 구현 내용
 ### Assignment 1 - Login / SignUp
 * /auth 경로에 로그인 / 회원가입 기능을 개발.  
