@@ -8,6 +8,7 @@ interface apiResponse extends Response {
   details: string;
 }
 
+// 에러와 관련된 부분을 담당하는 미들웨어
 const errorMiddleware = async (data: apiResponse) => {
   if (data.details === tokenNotValid) {
     window.alert('다시 로그인을 진행해주세요.');
@@ -17,6 +18,9 @@ const errorMiddleware = async (data: apiResponse) => {
   return data;
 };
 
+
+// 미들웨어들을 조합 하는 함수.
+// 새로 추가하고 싶은경우 data = 원하는함수()의 형태로 data를 변경시키며 체이닝함.
 const apiFetchMiddlewares = async (res: Response) => {
   let data = await res.json();
   data = errorMiddleware(data);
