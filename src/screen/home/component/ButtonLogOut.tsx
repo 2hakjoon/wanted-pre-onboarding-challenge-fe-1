@@ -11,7 +11,7 @@ function ButtonLogOut() {
     window.location.reload();
   };
 
-  return <ButtonBasic title="로그아웃" onClick={logoutHandler} />;
+  return <ButtonBasic data-cy="button-logout" title="로그아웃" onClick={logoutHandler} />;
 }
 
 export default ButtonLogOut;
