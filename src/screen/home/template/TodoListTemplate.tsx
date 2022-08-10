@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiGetTodos} from '../../../api/Todos/todos';
+import { apiTodos } from '../../../api/Todos/todos';
 import { ApiGetTodosResponse } from '../../../api/Todos/types';
 import TodoListCard from '../component/TodoListCard';
 
@@ -34,7 +34,7 @@ const Wrapper = styled.section`
 `;
 
 function TodoListTemplate() {
-  const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
+  const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
   const { id: todoId } = useParams();
 
   return (

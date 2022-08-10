@@ -3,10 +3,10 @@ import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
-import { apiDeleteTodo } from '../../../api/Todos/todos';
 import { Todo } from '../../../api/Todos/types';
 import { routes } from '../../routes';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
+import { apiTodos } from '../../../api/Todos/todos';
 
 const Wrapper = styled.li`
   display: flex;
@@ -36,7 +36,7 @@ interface TodoListCardProps extends Todo {
 }
 
 function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoListCardProps) {
-  const { mutate } = useMutation(apiDeleteTodo);
+  const { mutate } = useMutation(apiTodos.deleteTodo);
   const { id: todoId } = useParams();
   const navigate = useNavigate();
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { apiCreateTodo, apiGetTodos } from '../../api/Todos/todos';
+import { apiTodos } from '../../api/Todos/todos';
 import { ApiGetTodosResponse, TodoParams } from '../../api/Todos/types';
 import TodoDetailTemplate from './template/TodoDetailTemplate';
 import InputBasic from '../../common/components/input/InputBasic';
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  >:first-child{
+  > :first-child {
     align-self: flex-end;
     margin-bottom: 20px;
   }
@@ -45,8 +45,8 @@ const Wrapper = styled.div`
 `;
 
 function HomeScreen() {
-  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
-  const { mutate } = useMutation(apiCreateTodo);
+  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
+  const { mutate } = useMutation(apiTodos.createTodo);
   const { register, handleSubmit, setValue } = useForm<TodoParams>();
 
   const saveTodoHandler = ({ title, content }: TodoParams) => {
@@ -66,7 +66,7 @@ function HomeScreen() {
 
   return (
     <Wrapper>
-      <ButtonLogOut/>
+      <ButtonLogOut />
       <form onSubmit={handleSubmit(saveTodoHandler)}>
         <InputBasic register={register('title')} placeholder="주제." data-cy="input-todo-title" />
         <InputBasic register={register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />

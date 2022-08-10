@@ -4,14 +4,10 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import {
-  apiGetTodoById,
-  apiGetTodos,
-  apiUpdateTodo,
-} from '../../../api/Todos/todos';
 import { ApiGetTodoById, ApiGetTodosResponse, TodoParams } from '../../../api/Todos/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
+import { apiTodos } from '../../../api/Todos/todos';
 
 const Wrapper = styled.article`
   width: 100%;
@@ -24,14 +20,14 @@ const Wrapper = styled.article`
   .button-edit-mode {
     align-self: flex-end;
   }
-  form{
+  form {
     display: flex;
     flex-direction: column;
-    >*{
+    > * {
       margin-bottom: 10px;
     }
-    div{
-      >:first-child{
+    div {
+      > :first-child {
         margin-right: 40px;
       }
     }
@@ -41,14 +37,14 @@ const Wrapper = styled.article`
 function TodoDetailTemplate() {
   const { id: todoId } = useParams();
 
-  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiGetTodos);
+  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
   const { register, handleSubmit } = useForm<TodoParams>();
   const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
     ['getTodoById', todoId],
-    () => apiGetTodoById(todoId),
+    () => apiTodos.getTodoById(todoId),
     { enabled: !!todoId },
   );
-  const { mutate } = useMutation(apiUpdateTodo);
+  const { mutate } = useMutation(apiTodos.updateTodo);
 
   const [editMode, setEditMode] = useState(false);
 
