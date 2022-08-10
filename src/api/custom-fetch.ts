@@ -18,12 +18,12 @@ const errorMiddleware = async (data: apiResponse) => {
   return data;
 };
 
-
 // 미들웨어들을 조합 하는 함수.
 // 새로 추가하고 싶은경우 data = 원하는함수()의 형태로 data를 변경시키며 체이닝함.
 const apiFetchMiddlewares = async (res: Response) => {
   let data = await res.json();
   data = errorMiddleware(data);
+  // data = 미들웨어(data); 이렇게 추가.
   return data;
 };
 
