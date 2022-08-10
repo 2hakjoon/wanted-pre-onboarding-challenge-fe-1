@@ -1,15 +1,6 @@
 import { apiEndpont } from '../endpoints';
+import { SignUpParams, SignUpResponse } from './types';
 
-export interface SignUpParams {
-  email: string;
-  password: string;
-}
-
-export interface SignUpResponse {
-  message?: string;
-  token?: string;
-  details?: string;
-}
 
 export const apiSignUp = async (body: SignUpParams): Promise<SignUpResponse> => {
   return fetch(apiEndpont.signUp, {
