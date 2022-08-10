@@ -6,12 +6,10 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import {
   apiGetTodoById,
-  ApiGetTodoById,
   apiGetTodos,
-  ApiGetTodosResponse,
   apiUpdateTodo,
 } from '../../../api/Todos/todos';
-import { TodoParams } from '../../../api/Todos/types';
+import { ApiGetTodoById, ApiGetTodosResponse, TodoParams } from '../../../api/Todos/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
 

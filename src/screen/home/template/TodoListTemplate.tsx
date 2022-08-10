@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiGetTodos, ApiGetTodosResponse } from '../../../api/Todos/todos';
+import { apiGetTodos} from '../../../api/Todos/todos';
+import { ApiGetTodosResponse } from '../../../api/Todos/types';
 import TodoListCard from '../component/TodoListCard';
 
 const Wrapper = styled.section`
