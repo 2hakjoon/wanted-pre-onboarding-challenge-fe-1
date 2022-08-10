@@ -3,7 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiSignUp } from '../../api/Auth/auth';
+import { authApi } from '../../api/Auth/auth';
 import { SignUpParams, SignUpResponse } from '../../api/Auth/types';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import InputLabel from '../../common/components/input/InputLabel';
@@ -32,7 +32,7 @@ function SignUpScreen() {
   const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
 
-  const { mutate } = useMutation(apiSignUp);
+  const { mutate } = useMutation(authApi.join);
 
   const joinHandler = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ details, token }: SignUpResponse) => {
