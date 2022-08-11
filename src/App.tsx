@@ -7,6 +7,7 @@ import { routes } from './screen/routes';
 import { authToken } from './common/constants/local-storage';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
+import ErrorBoundary from './common/components/ErrorBoundary/ErrorBoundary';
 
 const Wrapper = styled.main`
   width: 100%;
@@ -20,23 +21,25 @@ function App() {
 
   return (
     <Wrapper>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes>
-            {isLoggedIn ? (
-              <>
-                <Route path={routes.home} element={<LoginScreen />} />
-                <Route path={routes.join} element={<SignUpScreen />} />
-              </>
-            ) : (
-              <>
-                <Route path={routes.home} element={<HomeScreen />} />
-                <Route path={routes.todo} element={<HomeScreen />} />
-              </>
-            )}
-          </Routes>
-        </Router>
-      </ThemeProvider>
+      <ErrorBoundary>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Routes>
+              {isLoggedIn ? (
+                <>
+                  <Route path={routes.home} element={<LoginScreen />} />
+                  <Route path={routes.join} element={<SignUpScreen />} />
+                </>
+              ) : (
+                <>
+                  <Route path={routes.home} element={<HomeScreen />} />
+                  <Route path={routes.todo} element={<HomeScreen />} />
+                </>
+              )}
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </ErrorBoundary>
     </Wrapper>
   );
 }
