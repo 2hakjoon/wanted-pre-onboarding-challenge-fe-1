@@ -5,6 +5,11 @@ import TodoListTemplate from './template/TodoListTemplate';
 import ButtonLogOut from '../../common/components/button/ButtonLogOut';
 import TodoWriteTemplate from './template/TodoWriteTemplate';
 import TitleHelmet from '../../common/components/helmet/TitleHelmet';
+import LoadingAndError from '../../common/components/error-loading/LoadingAndError';
+import TodoListLoading from './template/TodoListLoading';
+import TodoListError from './template/TodoListError';
+import TodoDetailLoading from './template/TodoDetailLoading';
+import TodoDetailError from './template/TodoDetailError';
 
 const Wrapper = styled.div`
   width: 1000px;
@@ -36,8 +41,13 @@ function HomeScreen() {
       <ButtonLogOut />
       <TodoWriteTemplate />
       <div className="wrapper-todo">
-        <TodoListTemplate />
-        <TodoDetailTemplate />
+        <LoadingAndError onLoading={<TodoListLoading />} onError={<TodoListError />}>
+          <TodoListTemplate />
+        </LoadingAndError>
+
+        <LoadingAndError onLoading={<TodoDetailLoading/>} onError={<TodoDetailError/>}>
+          <TodoDetailTemplate />
+        </LoadingAndError>
       </div>
     </Wrapper>
   );
