@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TodoDetailTemplate from './template/TodoDetailTemplate';
 import TodoListTemplate from './template/TodoListTemplate';
-import ButtonLogOut from './component/ButtonLogOut';
+import ButtonLogOut from '../../common/components/button/ButtonLogOut';
 import TodoWriteTemplate from './template/TodoWriteTemplate';
 
 const Wrapper = styled.div`

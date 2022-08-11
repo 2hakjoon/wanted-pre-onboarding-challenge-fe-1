@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ButtonBasic from '../../../common/components/button/ButtonBasic';
-import { authToken } from '../../../common/constants/local-storage';
+import ButtonBasic from './ButtonBasic';
+import { authToken } from '../../constants/local-storage';
 
 function ButtonLogOut() {
   const navigate = useNavigate()
