@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { apiTodos } from '../../api/Todos/todos';
 import { ApiGetTodosResponse, TodoParams } from '../../api/Todos/types';
@@ -9,6 +9,7 @@ import InputBasic from '../../common/components/input/InputBasic';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import TodoListTemplate from './template/TodoListTemplate';
 import ButtonLogOut from './component/ButtonLogOut';
+import useCreateTodo from './hooks/useCreateTodo';
 
 const Wrapper = styled.div`
   width: 1000px;
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
 
 function HomeScreen() {
   const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
-  const { mutate } = useMutation(apiTodos.createTodo);
+  const { mutate } = useCreateTodo();
   const { register, handleSubmit, setValue } = useForm<TodoParams>();
 
   const saveTodoHandler = ({ title, content }: TodoParams) => {
