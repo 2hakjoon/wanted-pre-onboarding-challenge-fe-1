@@ -5,7 +5,7 @@ import useGetTodoById from '../hooks/useGetTodoById';
 
 function TodoDetail() {
   const { id: todoId } = useParams();
-  const { data: todoData } = useGetTodoById(todoId);
+  const { data: todoData } = useGetTodoById(todoId, { suspense: true });
 
   return (
     <>

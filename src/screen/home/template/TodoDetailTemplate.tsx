@@ -23,7 +23,7 @@ function TodoDetailTemplate() {
   const { id: todoId } = useParams();
 
   const [editMode, setEditMode] = useState(false);
-  const { data: todoData } = useGetTodoById(todoId);
+  const { data: todoData } = useGetTodoById(todoId, { suspense: true });
 
   const openEditMode = () => {
     setEditMode(true);

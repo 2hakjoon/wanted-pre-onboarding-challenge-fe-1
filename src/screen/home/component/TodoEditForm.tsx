@@ -27,7 +27,7 @@ interface TodoEditForm {
 function TodoEditForm({ closeEditMode }: TodoEditForm) {
   const { id: todoId } = useParams();
   const { register, handleSubmit } = useForm<TodoParams>();
-  const { refetch: refetchTodos } = useGetTodos();
+  const { refetch: refetchTodos } = useGetTodos({suspense:true});
   const { data: todoData, refetch: refetchTodo } = useGetTodoById(todoId);
   const { mutate } = useUpdateTodos();
 

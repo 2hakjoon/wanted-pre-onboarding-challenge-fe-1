@@ -32,7 +32,7 @@ const Wrapper = styled.section`
 `;
 
 function TodoListTemplate() {
-  const { data: todosData, refetch: refetchTodos } = useGetTodos();
+  const { data: todosData, refetch: refetchTodos } = useGetTodos({ suspense: true });
   const { id: todoId } = useParams();
 
   return (
