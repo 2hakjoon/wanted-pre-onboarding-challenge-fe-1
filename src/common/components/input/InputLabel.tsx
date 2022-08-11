@@ -2,7 +2,7 @@ import React, { HTMLInputTypeAttribute } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -27,10 +27,10 @@ interface InputLabelProps {
 
 function InputLabel({ title, register, placeholder, type, ...rest }: InputLabelProps) {
   return (
-    <Wrapper {...rest}>
+    <Container {...rest}>
       <span>{title}</span>
       <input type={type} {...register} className="input" placeholder={placeholder} />
-    </Wrapper>
+    </Container>
   );
 }
 

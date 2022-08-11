@@ -7,7 +7,7 @@ import { routes } from '../../routes';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import useDeleteTodo from '../hooks/useDeleteTodo';
 
-const Wrapper = styled.li`
+const Container = styled.li`
   display: flex;
   border: 2px solid darkgray;
   padding: 20px;
@@ -53,13 +53,13 @@ function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoList
   };
 
   return (
-    <Wrapper data-cy="wrapper-todo-card" className={`${selected ? 'select-card' : ''}`}>
+    <Container data-cy="container-todo-card" className={`${selected ? 'select-card' : ''}`}>
       <Link to={routes.home + id} data-cy="link-todo-detail">
         <span data-cy="text-todo-list-title">{title}</span>
         <span data-cy="text-todo-list-createdAt">{`${dayjs(createdAt).format('YYYY/MM/DD')}`}</span>
       </Link>
       <ButtonBasic title="X" type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodoHandler(e, id)} />
-    </Wrapper>
+    </Container>
   );
 }
 

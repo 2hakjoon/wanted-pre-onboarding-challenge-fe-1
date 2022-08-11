@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TitleHelmet from '../../common/components/helmet/TitleHelmet';
 import SignUpFormTemplate from './template/SignUpFormTemplate';
 
-const Wrapper = styled.section`
+const Container = styled.section`
   display: flex;
   width: 100%;
   height: 100vh;
@@ -13,10 +13,10 @@ const Wrapper = styled.section`
 
 function SignUpScreen() {
   return (
-    <Wrapper>
+    <Container>
       <TitleHelmet title="회원가입" />
       <SignUpFormTemplate />
-    </Wrapper>
+    </Container>
   );
 }
 

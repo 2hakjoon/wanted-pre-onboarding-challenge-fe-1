@@ -11,7 +11,7 @@ import TodoListError from './template/TodoListError';
 import TodoDetailLoading from './template/TodoDetailLoading';
 import TodoDetailError from './template/TodoDetailError';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   width: 1000px;
   height: 100vh;
   padding-top: 50px;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
     align-self: flex-end;
     margin-bottom: 20px;
   }
-  .wrapper-todo {
+  .container-todo {
     display: flex;
     height: 80%;
     padding: 20px;
@@ -36,20 +36,20 @@ const Wrapper = styled.div`
 
 function HomeScreen() {
   return (
-    <Wrapper>
+    <Container>
       <TitleHelmet title="To Do List" />
       <ButtonLogOut />
       <TodoWriteTemplate />
-      <div className="wrapper-todo">
+      <div className="container-todo">
         <LoadingAndError onLoading={<TodoListLoading />} onError={<TodoListError />}>
           <TodoListTemplate />
         </LoadingAndError>
 
-        <LoadingAndError onLoading={<TodoDetailLoading/>} onError={<TodoDetailError/>}>
+        <LoadingAndError onLoading={<TodoDetailLoading />} onError={<TodoDetailError />}>
           <TodoDetailTemplate />
         </LoadingAndError>
       </div>
-    </Wrapper>
+    </Container>
   );
 }
 

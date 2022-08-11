@@ -37,7 +37,7 @@ function TodoListTemplate() {
   const { id: todoId } = useParams();
 
   return (
-    <TodoListContainer data-cy="wrapper-todo-list">
+    <TodoListContainer data-cy="container-todo-list">
       <ListContainer>
         {todosData?.length ? (
           todosData?.map((todo) => (

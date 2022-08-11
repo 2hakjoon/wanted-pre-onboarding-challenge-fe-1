@@ -9,7 +9,7 @@ import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
 
-const Wrapper = styled.main`
+const Container = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ function App() {
   const isLoggedIn = !localStorage.getItem(authToken);
 
   return (
-    <Wrapper>
+    <Container>
       <ErrorBoundary>
         <ThemeProvider theme={theme}>
           <Router>
@@ -40,7 +40,7 @@ function App() {
           </Router>
         </ThemeProvider>
       </ErrorBoundary>
-    </Wrapper>
+    </Container>
   );
 }
 

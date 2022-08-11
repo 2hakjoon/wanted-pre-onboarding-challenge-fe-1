@@ -8,7 +8,7 @@ import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 
-const FormWrapper = styled.form`
+const FormContainer = styled.form`
   border: 2px solid gray;
   border-radius: 20px;
   width: 400px;
@@ -54,7 +54,7 @@ function SignUpFormTemplate() {
   };
   
   return (
-    <FormWrapper onSubmit={handleSubmit(signUpAndRedirect)}>
+    <FormContainer onSubmit={handleSubmit(signUpAndRedirect)}>
       <span className="text-head">회원가입</span>
       <InputLabel
         title="이메일"
@@ -73,7 +73,7 @@ function SignUpFormTemplate() {
       <a className="link-join" href="/" data-cy="link-login">
         로그인하기
       </a>
-    </FormWrapper>
+    </FormContainer>
   );
 }
 
