@@ -24,6 +24,7 @@
     "react/jsx-props-no-spreading": 0,
     "no-alert": 0,
     "no-console": 0,
-    "@typescript-eslint/no-empty-interface": 0
+    "@typescript-eslint/no-empty-interface": 0,
+    "react/jsx-no-useless-fragment": 0
   }
 }
