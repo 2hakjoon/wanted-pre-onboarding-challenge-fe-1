@@ -4,10 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { ApiGetTodoById, ApiGetTodosResponse, TodoParams } from '../../../api/Todos/types';
+import { ApiGetTodoById, TodoParams } from '../../../api/Todos/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
 import { apiTodos } from '../../../api/Todos/todos';
+import useGetTodos from '../hooks/useGetTodos';
 
 const Wrapper = styled.article`
   width: 100%;
@@ -37,7 +38,7 @@ const Wrapper = styled.article`
 function TodoDetailTemplate() {
   const { id: todoId } = useParams();
 
-  const { refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
+  const { refetch: refetchTodos } = useGetTodos();
   const { register, handleSubmit } = useForm<TodoParams>();
   const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
     ['getTodoById', todoId],

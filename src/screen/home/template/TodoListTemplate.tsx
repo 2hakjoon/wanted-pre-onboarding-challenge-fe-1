@@ -1,10 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiTodos } from '../../../api/Todos/todos';
-import { ApiGetTodosResponse } from '../../../api/Todos/types';
 import TodoListCard from '../component/TodoListCard';
+import useGetTodos from '../hooks/useGetTodos';
 
 const Wrapper = styled.section`
   width: 100%;
@@ -34,7 +32,7 @@ const Wrapper = styled.section`
 `;
 
 function TodoListTemplate() {
-  const { data: todosData, refetch: refetchTodos } = useQuery<ApiGetTodosResponse>(['getTodos'], apiTodos.getTodos);
+  const { data: todosData, refetch: refetchTodos } = useGetTodos();
   const { id: todoId } = useParams();
 
   return (
