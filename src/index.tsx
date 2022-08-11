@@ -7,7 +7,18 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      retry:0,
+      useErrorBoundary:true,
+      suspense:true,
+    },
+    mutations:{
+      useErrorBoundary:true,
+    }
+  }
+});
 
 root.render(
   <React.StrictMode>
