@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignUpTemplate from './template/SignUpTemplate';
+import SignUpFormTemplate from './template/SignUpFormTemplate';
 
 const Wrapper = styled.section`
   display: flex;
@@ -14,7 +14,7 @@ function SignUpScreen() {
 
   return (
     <Wrapper>
-      <SignUpTemplate />
+      <SignUpFormTemplate />
     </Wrapper>
   );
 }

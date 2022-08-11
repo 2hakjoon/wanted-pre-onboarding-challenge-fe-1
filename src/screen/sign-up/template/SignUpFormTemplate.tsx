@@ -20,7 +20,7 @@ const FormWrapper = styled.form`
   padding: 20px;
 `;
 
-function SignUpTemplate() {
+function SignUpFormTemplate() {
   const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
 
@@ -77,4 +77,4 @@ function SignUpTemplate() {
   );
 }
 
-export default SignUpTemplate;
+export default SignUpFormTemplate;
