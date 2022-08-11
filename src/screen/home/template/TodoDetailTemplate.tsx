@@ -6,7 +6,7 @@ import TodoEditForm from '../component/TodoEditForm';
 import useGetTodoById from '../hooks/useGetTodoById';
 import TodoDetail from '../component/TodoDetail';
 
-const Wrapper = styled.article`
+export const TodoDetailContainer = styled.article`
   width: 100%;
   height: 100%;
   display: flex;
@@ -33,7 +33,7 @@ function TodoDetailTemplate() {
   };
 
   return (
-    <Wrapper>
+    <TodoDetailContainer>
       {todoData &&
         (!editMode ? (
           <ButtonBasic
@@ -47,7 +47,7 @@ function TodoDetailTemplate() {
           <TodoEditForm closeEditMode={closeEditMode} />
         ))}
       <TodoDetail />
-    </Wrapper>
+    </TodoDetailContainer>
   );
 }
 
