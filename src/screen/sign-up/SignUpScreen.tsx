@@ -1,13 +1,12 @@
-import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { authApi } from '../../api/Auth/auth';
 import { SignUpParams, SignUpResponse } from '../../api/Auth/types';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import InputLabel from '../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
+import useSignUp from './hooks/useSignUp';
 
 const Wrapper = styled.section`
   display: flex;
@@ -32,9 +31,10 @@ function SignUpScreen() {
   const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
 
-  const { mutate } = useMutation(authApi.join);
-
-  const joinHandler = ({ email, password }: SignUpParams) => {
+  const { mutate } = useSignUp();
+    
+  // onSuccess로직에서 회원가입에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
+  const signUpAndRedirect = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ details, token }: SignUpResponse) => {
       if (details) {
         window.alert(details);
@@ -62,7 +62,7 @@ function SignUpScreen() {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit(joinHandler)}>
+      <form onSubmit={handleSubmit(signUpAndRedirect)}>
         <span className="text-head">회원가입</span>
         <InputLabel
           title="이메일"
