@@ -34,17 +34,18 @@ function TodoDetailTemplate() {
 
   return (
     <Wrapper>
-      {todoData && editMode ? (
-        <ButtonBasic
-          className="button-edit-mode"
-          title="수정"
-          type="button"
-          data-cy="button-edit-mode"
-          onClick={openEditMode}
-        />
-      ) : (
-        <TodoEditForm closeEditMode={closeEditMode} />
-      )}
+      {todoData &&
+        (!editMode ? (
+          <ButtonBasic
+            className="button-edit-mode"
+            title="수정"
+            type="button"
+            data-cy="button-edit-mode"
+            onClick={openEditMode}
+          />
+        ) : (
+          <TodoEditForm closeEditMode={closeEditMode} />
+        ))}
       <TodoDetail />
     </Wrapper>
   );
