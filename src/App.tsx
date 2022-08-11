@@ -7,7 +7,7 @@ import { routes } from './screen/routes';
 import { authToken } from './common/constants/local-storage';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
-import ErrorBoundary from './common/components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
 
 const Wrapper = styled.main`
   width: 100%;
