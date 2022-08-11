@@ -1,12 +1,11 @@
-import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { authApi } from '../../api/Auth/auth';
 import { LoginParams, LoginResponse } from '../../api/Auth/types';
 import ButtonBasic from '../../common/components/button/ButtonBasic';
 import InputLabel from '../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../common/constants/regex';
+import useLogin from './hooks/useLogin';
 
 const Wrapper = styled.section`
   display: flex;
@@ -30,7 +29,7 @@ const Wrapper = styled.section`
 function LoginScreen() {
   const { register, getValues, formState, handleSubmit } = useForm<LoginParams>({ mode: 'onChange' });
 
-  const { mutate } = useMutation(authApi.login);
+  const { mutate } = useLogin();
 
   const loginHandler = ({ email, password }: LoginParams) => {
     const onSuccess = ({ details, token }: LoginResponse) => {
