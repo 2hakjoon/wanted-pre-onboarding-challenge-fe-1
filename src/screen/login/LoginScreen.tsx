@@ -31,7 +31,8 @@ function LoginScreen() {
 
   const { mutate } = useLogin();
 
-  const loginHandler = ({ email, password }: LoginParams) => {
+  const loginAndRefresh = ({ email, password }: LoginParams) => {
+    // onSuccess로직에서 로그인에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
     const onSuccess = ({ details, token }: LoginResponse) => {
       if (details) {
         window.alert(details);
@@ -58,7 +59,7 @@ function LoginScreen() {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit(loginHandler)}>
+      <form onSubmit={handleSubmit(loginAndRefresh)}>
         <span className="text-head">로그인</span>
         <InputLabel
           title="이메일"
