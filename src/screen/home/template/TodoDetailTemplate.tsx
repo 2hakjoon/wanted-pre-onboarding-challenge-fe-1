@@ -1,14 +1,15 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { ApiGetTodoById, TodoParams } from '../../../api/Todos/types';
+import { TodoParams } from '../../../api/Todos/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
 import { apiTodos } from '../../../api/Todos/todos';
 import useGetTodos from '../hooks/useGetTodos';
+import useGetTodoById from '../hooks/useGetTodoById';
 
 const Wrapper = styled.article`
   width: 100%;
@@ -40,11 +41,7 @@ function TodoDetailTemplate() {
 
   const { refetch: refetchTodos } = useGetTodos();
   const { register, handleSubmit } = useForm<TodoParams>();
-  const { data: todoData, refetch: refetchTodo } = useQuery<ApiGetTodoById>(
-    ['getTodoById', todoId],
-    () => apiTodos.getTodoById(todoId),
-    { enabled: !!todoId },
-  );
+  const { data: todoData, refetch: refetchTodo } = useGetTodoById(todoId);
   const { mutate } = useMutation(apiTodos.updateTodo);
 
   const [editMode, setEditMode] = useState(false);
