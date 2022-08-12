@@ -36,20 +36,20 @@ interface TodoListCardProps extends Todo {
 
 function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoListCardProps) {
   const { mutate } = useDeleteTodo();
-  const { id: todoId } = useParams();
+  const { id: currentTodoId } = useParams();
   const navigate = useNavigate();
 
-  const deleteTodoHandler = (e: React.MouseEvent<HTMLElement>, id: string) => {
+  const deleteTodo = (e: React.MouseEvent<HTMLElement>, willDeleteTodoId: string) => {
     e.stopPropagation();
 
-    const onSuccess = () => {
-      if (id === todoId) {
-        navigate('/', { replace: true });
-      }
-      refetchTodos();
-    };
-
-    mutate(id, { onSuccess });
+    mutate(willDeleteTodoId, {
+      onSuccess: () => {
+        if (willDeleteTodoId === currentTodoId) {
+          navigate('/', { replace: true });
+        }
+        refetchTodos();
+      },
+    });
   };
 
   return (
@@ -58,7 +58,7 @@ function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoList
         <span data-cy="text-todo-list-title">{title}</span>
         <span data-cy="text-todo-list-createdAt">{`${dayjs(createdAt).format('YYYY/MM/DD')}`}</span>
       </Link>
-      <ButtonBasic title="X" type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodoHandler(e, id)} />
+      <ButtonBasic title="X" type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodo(e, id)} />
     </Container>
   );
 }
