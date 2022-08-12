@@ -38,15 +38,15 @@ function TodoListTemplate() {
 
   return (
     <TodoListContainer data-cy="container-todo-list">
-      <ListContainer>
-        {todosData?.length ? (
-          todosData?.map((todo) => (
+      {todosData?.length ? (
+        <ListContainer>
+          {todosData.map((todo) => (
             <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} selected={todoId === todo.id} />
-          ))
-        ) : (
-          <span>할 일이 아직 없어요..</span>
-        )}
-      </ListContainer>
+          ))}
+        </ListContainer>
+      ) : (
+        <span>할 일이 아직 없어요..</span>
+      )}
     </TodoListContainer>
   );
 }
