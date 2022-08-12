@@ -2,7 +2,8 @@
 
 ## 프로젝트 소개
 React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝트입니다.  
-개인적인 욕심으로 cypress를 이용한 e2e테스트 자동화까지 구현해봤습니다. 
+챌린지 기간동안 리팩토링이 빈번할것으로 예상되어 cypress로 e2e테스트 자동화를 했습니다.  
+테스트 자동화로 인해 테스트 시간을 크게 절약 했습니다. 
 
 ### 기술 스택
   * Typescript
@@ -10,6 +11,14 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
   * React Query
   * Cypress
   * Styled Component
+
+## 챌린지 과정
+  * 1-1 회차 실천결과 : https://2hakjoon-mindmap.tistory.com/17  
+    * 선언적 프로그래밍. HOW가 아닌 WHAT으로 코드를 작성해야 가독성이 더 좋다.
+    * 관심사 분리. business로직과 view로직은 분리하자.
+    * 적절한 추상화. 지나친 추상화는 오히려 안좋다. 컴포넌트간의 추상회 수준은 동일하게.
+    * 비동기 처리. ErrorBoundary와 Suspense에 위임하기.
+
 
 ## 설치 및 실행
   ``` bash
