@@ -87,7 +87,7 @@ describe('get todo detail', () => {
     cy.visit('/');
 
     cy.get(linkTodoDetail).should('exist').click();
-    cy.get(wrapperTodoCard).should('exist').should('have.class', 'select-card');
+    cy.get(wrapperTodoCard).should('exist').should('have.class', 'selected');
   });
 
   it('should render todo detail', () => {

@@ -14,7 +14,7 @@ const Container = styled.li`
   border-radius: 20px;
   justify-content: space-between;
   margin-bottom: 10px;
-  &.select-card {
+  &.selected {
     background-color: skyblue;
     span {
       color: white;
@@ -31,20 +31,24 @@ const Container = styled.li`
 
 interface TodoListCardProps extends Todo {
   refetchTodos: () => void;
-  selected: boolean;
 }
 
-function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoListCardProps) {
+function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps) {
   const { mutate } = useDeleteTodo();
   const { id: currentTodoId } = useParams();
   const navigate = useNavigate();
+
+  const isCardSelected = () => {
+    return id === currentTodoId
+  }
+
 
   const deleteTodo = (e: React.MouseEvent<HTMLElement>, willDeleteTodoId: string) => {
     e.stopPropagation();
 
     mutate(willDeleteTodoId, {
       onSuccess: () => {
-        if (willDeleteTodoId === currentTodoId) {
+        if (isCardSelected()) {
           navigate('/', { replace: true });
         }
         refetchTodos();
@@ -53,7 +57,7 @@ function TodoListCard({ selected, id, title, createdAt, refetchTodos }: TodoList
   };
 
   return (
-    <Container data-cy="container-todo-card" className={`${selected ? 'select-card' : ''}`}>
+    <Container data-cy="container-todo-card" className={`${isCardSelected() ? 'selected' : ''}`}>
       <Link to={routes.home + id} data-cy="link-todo-detail">
         <span data-cy="text-todo-list-title">{title}</span>
         <span data-cy="text-todo-list-createdAt">{`${dayjs(createdAt).format('YYYY/MM/DD')}`}</span>

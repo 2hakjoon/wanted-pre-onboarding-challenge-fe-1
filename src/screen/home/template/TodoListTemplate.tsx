@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import TodoListCard from '../component/TodoListCard';
 import useGetTodos from '../hooks/useGetTodos';
@@ -34,14 +33,13 @@ const ListContainer = styled.ul`
 
 function TodoListTemplate() {
   const { data: todosData, refetch: refetchTodos } = useGetTodos({ suspense: true });
-  const { id: todoId } = useParams();
 
   return (
     <TodoListContainer data-cy="container-todo-list">
       {todosData?.length ? (
         <ListContainer>
           {todosData.map((todo) => (
-            <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} selected={todoId === todo.id} />
+            <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} />
           ))}
         </ListContainer>
       ) : (
