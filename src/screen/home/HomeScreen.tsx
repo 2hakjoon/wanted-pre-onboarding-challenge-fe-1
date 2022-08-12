@@ -41,11 +41,11 @@ function HomeScreen() {
       <ButtonLogOut />
       <TodoWriteTemplate />
       <div className="container-todo">
-        <LoadingAndError onLoading={<TodoListLoading />} onError={<TodoListError />}>
+        <LoadingAndError loadingFallback={<TodoListLoading />} errorFallback={<TodoListError />}>
           <TodoListTemplate />
         </LoadingAndError>
 
-        <LoadingAndError onLoading={<TodoDetailLoading />} onError={<TodoDetailError />}>
+        <LoadingAndError loadingFallback={<TodoDetailLoading />} errorFallback={<TodoDetailError />}>
           <TodoDetailTemplate />
         </LoadingAndError>
       </div>

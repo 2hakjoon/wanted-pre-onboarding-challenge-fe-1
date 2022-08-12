@@ -35,15 +35,15 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 interface LoadingAndErrorProps {
-  onError: ReactNode;
-  onLoading: ReactNode;
+  errorFallback: ReactNode;
+  loadingFallback: ReactNode;
   children: ReactNode;
 }
 
-function LoadingAndError({ onError, onLoading, children }: LoadingAndErrorProps) {
+function LoadingAndError({ errorFallback, loadingFallback, children }: LoadingAndErrorProps) {
   return (
-    <ErrorBoundary onError={onError}>
-      <Suspense fallback={onLoading}>{children}</Suspense>
+    <ErrorBoundary onError={errorFallback}>
+      <Suspense fallback={loadingFallback}>{children}</Suspense>
     </ErrorBoundary>
   );
 }
