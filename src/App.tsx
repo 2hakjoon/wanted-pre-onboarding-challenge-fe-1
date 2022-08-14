@@ -4,10 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import SignUpScreen from './screen/sign-up/SignUpScreen';
 import LoginScreen from './screen/login/LoginScreen';
 import { routes } from './screen/routes';
-import { authToken } from './common/constants/local-storage';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
+import useSelector from './hedux/hooks/useSelector';
 
 const Container = styled.main`
   width: 100%;
@@ -17,7 +17,8 @@ const Container = styled.main`
 `;
 
 function App() {
-  const isLoggedIn = !localStorage.getItem(authToken);
+  const { auth } = useSelector('auth');
+  console.log(auth);
 
   return (
     <Container>

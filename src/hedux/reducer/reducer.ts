@@ -1,7 +1,6 @@
-import { HeduxStateType } from '../core/types';
 import { HeduxActionObj } from './types';
 
-function reducer(state: HeduxStateType, action?: HeduxActionObj): HeduxStateType {
+function reducer<T>(state: T, action?: HeduxActionObj): T {
   if (!action) {
     return {
       ...state,
