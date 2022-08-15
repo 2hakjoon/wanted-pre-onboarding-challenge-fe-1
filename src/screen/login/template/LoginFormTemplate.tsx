@@ -24,7 +24,7 @@ function LoginFormTemplate() {
 
   const { mutate } = useLogin();
 
-  const loginAndRefresh = ({ email, password }: LoginParams) => {
+  const loginRequest = ({ email, password }: LoginParams) => {
     const onSuccess = ({ token }: LoginResponse) => {
       if (token) {
         window.alert('로그인이 완료되었습니다.');
@@ -50,7 +50,7 @@ function LoginFormTemplate() {
   };
 
   return (
-    <LoginFormContainer onSubmit={handleSubmit(loginAndRefresh)}>
+    <LoginFormContainer onSubmit={handleSubmit(loginRequest)}>
       <span className="text-head">로그인</span>
       <InputLabel
         title="이메일"

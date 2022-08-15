@@ -26,7 +26,7 @@ function SignUpFormTemplate() {
 
   const { mutate } = useSignUp();
 
-  const signUpAndRedirect = ({ email, password }: SignUpParams) => {
+  const signUpRequest = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
       if (token) {
         window.alert('회원가입이 완료되었습니다.');
@@ -52,7 +52,7 @@ function SignUpFormTemplate() {
   };
 
   return (
-    <SignUpFormContainer onSubmit={handleSubmit(signUpAndRedirect)}>
+    <SignUpFormContainer onSubmit={handleSubmit(signUpRequest)}>
       <span className="text-head">회원가입</span>
       <InputLabel
         title="이메일"
