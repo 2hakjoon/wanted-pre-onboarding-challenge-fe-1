@@ -4,9 +4,8 @@ export interface LoginParams {
 }
 
 export interface LoginResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
 
 export interface SignUpParams {
@@ -15,7 +14,6 @@ export interface SignUpParams {
 }
 
 export interface SignUpResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
