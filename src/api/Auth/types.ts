@@ -1,15 +1,12 @@
-
 export interface LoginParams {
   email: string;
   password: string;
 }
 
 export interface LoginResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
-
 
 export interface SignUpParams {
   email: string;
@@ -17,7 +14,6 @@ export interface SignUpParams {
 }
 
 export interface SignUpResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
