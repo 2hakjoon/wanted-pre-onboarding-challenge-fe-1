@@ -18,6 +18,9 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
     * 관심사 분리. business로직과 view로직은 분리하자.
     * 적절한 추상화. 지나친 추상화는 오히려 안좋다. 컴포넌트간의 추상회 수준은 동일하게.
     * 비동기 처리. ErrorBoundary와 Suspense에 위임하기.
+  * 1-2 회차 실천결과 : https://2hakjoon-mindmap.tistory.com/18
+    * 외부 요소와의 결합이 강한 코드는 좋지 않다. ‘추상(abstraction)’에 의존하며 ‘구체(concretion)’에는 의존하지 말자.
+    * 제어권 위임을 통해 결합을 느슨하게 하자. 대표적으로 콜백함수가 있다. React에서는 HOC가 예시 일것같다.
 
 
 ## 설치 및 실행
