@@ -37,7 +37,7 @@ function SignUpFormTemplate() {
     };
 
     const onError = ({ response }: SignUpError) => {
-      window.alert(response?.data.details);
+      return response?.data && window.alert(response?.data.details);
     };
     mutate({ email, password }, { onSuccess, onError });
   };
