@@ -10,7 +10,7 @@ export interface ErrorResponse {
   details: string;
 }
 
-const tokenMissingError = 'Token is missing'
+const tokenMissingError = 'Token is missing';
 
 const apiBackend = axios.create({
   baseURL: backendBaseUrl,
@@ -31,16 +31,15 @@ apiBackend.interceptors.request.use(
 
 apiBackend.interceptors.response.use(
   (res) => {
-    console.log(res);
     return res;
   },
   (error: AxiosError<ErrorResponse>): Promise<never> | undefined => {
     const errorDetail = error.response?.data.details;
     if (errorDetail === tokenMissingError) {
-      window.alert('다시 로그인을 진행해 주세요.')
-      window.history.pushState(null, "", '/');
+      window.alert('다시 로그인을 진행해 주세요.');
+      window.history.pushState(null, '', '/');
       window.location.reload();
-      return ;
+      return;
     }
     return Promise.reject(error);
   },
