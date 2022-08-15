@@ -1,11 +1,11 @@
-export const backend = 'http://localhost:8080';
+export const backendBaseUrl = 'http://localhost:8080';
 
 export const apiEndpont = {
-  signUp: `${backend}/users/create`,
-  login: `${backend}/users/login`,
-  getTodos: `${backend}/todos`,
-  getTodoById: `${backend}/todos/`,
-  createTodo: `${backend}/todos`,
-  updateTodo: `${backend}/todos/`,
-  deleteTodo: `${backend}/todos/`
+  signUp: `/users/create`,
+  login: `/users/login`,
+  getTodos: `/todos`,
+  getTodoById: `/todos`,
+  createTodo: `/todos`,
+  updateTodo: `/todos`,
+  deleteTodo: `/todos`
 };
