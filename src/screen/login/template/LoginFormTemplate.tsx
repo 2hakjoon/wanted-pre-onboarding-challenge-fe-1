@@ -26,11 +26,9 @@ function LoginFormTemplate() {
 
   const loginRequest = ({ email, password }: LoginParams) => {
     const onSuccess = ({ token }: LoginResponse) => {
-      if (token) {
-        window.alert('로그인이 완료되었습니다.');
-        localStorage.setItem('TOKEN', token);
-        window.location.reload();
-      }
+      window.alert('로그인이 완료되었습니다.');
+      localStorage.setItem('TOKEN', token);
+      window.location.reload();
     };
 
     const onError = ({ response }: LoginError) => {

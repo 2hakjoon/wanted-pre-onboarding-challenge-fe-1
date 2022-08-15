@@ -28,12 +28,10 @@ function SignUpFormTemplate() {
 
   const signUpRequest = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
-      if (token) {
-        window.alert('회원가입이 완료되었습니다.');
-        localStorage.setItem('TOKEN', token);
-        navigate('/', { replace: true });
-        window.location.reload();
-      }
+      window.alert('회원가입이 완료되었습니다.');
+      localStorage.setItem('TOKEN', token);
+      navigate('/', { replace: true });
+      window.location.reload();
     };
 
     const onError = ({ response }: SignUpError) => {
