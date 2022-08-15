@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { LoginParams, LoginResponse } from '../../../api/Auth/types';
+import { LoginError, LoginParams, LoginResponse } from '../../../api/Auth/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputLabel from '../../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
@@ -25,12 +25,7 @@ function LoginFormTemplate() {
   const { mutate } = useLogin();
 
   const loginAndRefresh = ({ email, password }: LoginParams) => {
-    // onSuccess로직에서 로그인에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
     const onSuccess = ({ token }: LoginResponse) => {
-      // if (details) {
-      //   window.alert(details);
-      //   return;
-      // }
       if (token) {
         window.alert('로그인이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
@@ -38,7 +33,11 @@ function LoginFormTemplate() {
       }
     };
 
-    mutate({ email, password }, { onSuccess });
+    const onError = ({response}: LoginError) => {
+      window.alert(response?.data.details);
+    };
+
+    mutate({ email, password }, { onSuccess, onError });
   };
 
   const isNotValild = () => {
