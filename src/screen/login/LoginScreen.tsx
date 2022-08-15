@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import LoadingAndError from '../../common/components/error-loading/LoadingAndError';
 import TitleHelmet from '../../common/components/helmet/TitleHelmet';
+import LoginFormError from './template/LoginFormError';
+import LoginFormLoading from './template/LoginFormLoading';
 import LoginFormTemplate from './template/LoginFormTemplate';
 
 const Container = styled.section`
@@ -15,7 +18,9 @@ function LoginScreen() {
   return (
     <Container>
       <TitleHelmet title="로그인" />
-      <LoginFormTemplate />
+      <LoadingAndError errorFallback={<LoginFormError />} loadingFallback={<LoginFormLoading />}>
+        <LoginFormTemplate />
+      </LoadingAndError>
     </Container>
   );
 }

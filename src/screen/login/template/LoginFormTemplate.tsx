@@ -7,7 +7,7 @@ import InputLabel from '../../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 import useLogin from '../hooks/useLogin';
 
-const FormWrapper = styled.form`
+export const LoginFormContainer = styled.form`
   border: 2px solid gray;
   border-radius: 20px;
   width: 400px;
@@ -26,11 +26,11 @@ function LoginFormTemplate() {
 
   const loginAndRefresh = ({ email, password }: LoginParams) => {
     // onSuccess로직에서 로그인에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
-    const onSuccess = ({ details, token }: LoginResponse) => {
-      if (details) {
-        window.alert(details);
-        return;
-      }
+    const onSuccess = ({ token }: LoginResponse) => {
+      // if (details) {
+      //   window.alert(details);
+      //   return;
+      // }
       if (token) {
         window.alert('로그인이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
@@ -51,7 +51,7 @@ function LoginFormTemplate() {
   };
 
   return (
-    <FormWrapper onSubmit={handleSubmit(loginAndRefresh)}>
+    <LoginFormContainer onSubmit={handleSubmit(loginAndRefresh)}>
       <span className="text-head">로그인</span>
       <InputLabel
         title="이메일"
@@ -70,7 +70,7 @@ function LoginFormTemplate() {
       <a className="link-join" href="/join" data-cy="link-join">
         회원가입하기
       </a>
-    </FormWrapper>
+    </LoginFormContainer>
   );
 }
 
