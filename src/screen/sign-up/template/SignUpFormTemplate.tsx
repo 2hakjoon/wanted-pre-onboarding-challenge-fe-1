@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { SignUpParams, SignUpResponse } from '../../../api/Auth/types';
+import { SignUpError, SignUpParams, SignUpResponse } from '../../../api/Auth/types';
 import useSignUp from '../hooks/useSignUp';
 import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
@@ -26,13 +26,8 @@ function SignUpFormTemplate() {
 
   const { mutate } = useSignUp();
 
-  // onSuccess로직에서 회원가입에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
   const signUpAndRedirect = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
-      // if (details) {
-      //   window.alert(details);
-      //   return;
-      // }
       if (token) {
         window.alert('회원가입이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
@@ -41,7 +36,10 @@ function SignUpFormTemplate() {
       }
     };
 
-    mutate({ email, password }, { onSuccess });
+    const onError = ({ response }: SignUpError) => {
+      window.alert(response?.data.details);
+    };
+    mutate({ email, password }, { onSuccess, onError });
   };
 
   const isNotValild = () => {
@@ -52,7 +50,7 @@ function SignUpFormTemplate() {
       !getValues('password')
     );
   };
-  
+
   return (
     <SignUpFormContainer onSubmit={handleSubmit(signUpAndRedirect)}>
       <span className="text-head">회원가입</span>

@@ -22,3 +22,5 @@ export interface SignUpResponse {
   message: string;
   token: string;
 }
+
+export type SignUpError = AxiosError<ErrorResponse>
