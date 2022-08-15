@@ -1,4 +1,3 @@
-
 export interface LoginParams {
   email: string;
   password: string;
@@ -9,7 +8,6 @@ export interface LoginResponse {
   token?: string;
   details?: string;
 }
-
 
 export interface SignUpParams {
   email: string;

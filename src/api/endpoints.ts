@@ -7,5 +7,5 @@ export const apiEndpont = {
   getTodoById: `/todos`,
   createTodo: `/todos`,
   updateTodo: `/todos`,
-  deleteTodo: `/todos`
+  deleteTodo: `/todos`,
 };
