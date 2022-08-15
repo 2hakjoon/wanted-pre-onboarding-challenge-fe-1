@@ -8,7 +8,7 @@ import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 
-const FormContainer = styled.form`
+export const SignUpFormContainer = styled.form`
   border: 2px solid gray;
   border-radius: 20px;
   width: 400px;
@@ -28,11 +28,11 @@ function SignUpFormTemplate() {
 
   // onSuccess로직에서 회원가입에 성공한 경우와 실패한 경우가 공존함. 리팩토링 예정
   const signUpAndRedirect = ({ email, password }: SignUpParams) => {
-    const onSuccess = ({ details, token }: SignUpResponse) => {
-      if (details) {
-        window.alert(details);
-        return;
-      }
+    const onSuccess = ({ token }: SignUpResponse) => {
+      // if (details) {
+      //   window.alert(details);
+      //   return;
+      // }
       if (token) {
         window.alert('회원가입이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
@@ -54,7 +54,7 @@ function SignUpFormTemplate() {
   };
   
   return (
-    <FormContainer onSubmit={handleSubmit(signUpAndRedirect)}>
+    <SignUpFormContainer onSubmit={handleSubmit(signUpAndRedirect)}>
       <span className="text-head">회원가입</span>
       <InputLabel
         title="이메일"
@@ -73,7 +73,7 @@ function SignUpFormTemplate() {
       <a className="link-join" href="/" data-cy="link-login">
         로그인하기
       </a>
-    </FormContainer>
+    </SignUpFormContainer>
   );
 }
 
