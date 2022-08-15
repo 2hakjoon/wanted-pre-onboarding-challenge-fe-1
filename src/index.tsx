@@ -8,15 +8,15 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient({
-  defaultOptions:{
-    queries:{
-      retry:0,
-      useErrorBoundary:true,
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      useErrorBoundary: (error: any) => error.response?.status >= 500 || !error.response?.status,
     },
-    mutations:{
-      useErrorBoundary:true,
-    }
-  }
+    mutations: {
+      useErrorBoundary: (error: any) => error.response?.status >= 500 || !error.response?.status,
+    },
+  },
 });
 
 root.render(
