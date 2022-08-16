@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import axios, { AxiosError } from 'axios';
-import { authToken, persistStore } from '../persistStore/persistStore';
+import { authTokenKey, persistStore } from '../persistStore/persistStore';
 import { backendBaseUrl } from './endpoints';
 
 export type FetchResponse<T> = { data: T };
@@ -15,13 +15,13 @@ const tokenMissingError = 'Token is missing';
 const apiBackend = axios.create({
   baseURL: backendBaseUrl,
   headers: {
-    Authorization: persistStore.get(authToken) || '',
+    Authorization: persistStore.get(authTokenKey) || '',
   },
 });
 
 apiBackend.interceptors.request.use(
   (config) => {
-    if (config.headers) config.headers.Authorization = persistStore.get(authToken) || '';
+    if (config.headers) config.headers.Authorization = persistStore.get(authTokenKey) || '';
     return config;
   },
   (error) => {

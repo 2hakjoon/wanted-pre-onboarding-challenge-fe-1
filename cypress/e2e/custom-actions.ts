@@ -1,6 +1,5 @@
-import { authToken } from "../../src/persistStore/persistStore"
-
+import { authTokenKey } from '../../src/persistStore/persistStore';
 
 export const injectAuthTokenToLocalstorage = () => {
-  localStorage.setItem(authToken, Cypress.env("authToken"))
-}
+  localStorage.setItem(authTokenKey, Cypress.env('authToken'));
+};

@@ -1,6 +1,6 @@
 import { buttonJoin, inputEmail, inputPassword, linkLogin } from '../data-tags';
 import { routes } from '../../../src/screen/routes';
-import { authToken } from '../../../src/persistStore/persistStore';
+import { authTokenKey } from '../../../src/persistStore/persistStore';
 
 const emailRandom = `${Math.random()}@test.com`;
 const password = '12345678';
@@ -91,7 +91,7 @@ describe('join process', () => {
     cy.get(buttonJoin)
       .should('exist')
       .click()
-      .should(() => expect(localStorage.getItem(authToken)).to.be.a('string'));
+      .should(() => expect(localStorage.getItem(authTokenKey)).to.be.a('string'));
     cy.on('window:alert', (t) => {
       expect(t).to.contains('회원가입이 완료되었습니다.');
     });

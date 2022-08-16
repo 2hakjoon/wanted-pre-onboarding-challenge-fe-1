@@ -7,7 +7,7 @@ import { routes } from './screen/routes';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
-import { authToken, persistStore } from './persistStore/persistStore';
+import { authTokenKey, persistStore } from './persistStore/persistStore';
 
 const Container = styled.main`
   width: 100%;
@@ -17,7 +17,7 @@ const Container = styled.main`
 `;
 
 function App() {
-  const isLoggedIn = !!persistStore.get(authToken);
+  const isLoggedIn = !!persistStore.get(authTokenKey);
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const authToken = 'TOKEN';
+export const authTokenKey = 'TOKEN';
 
 export const persistStore = {
   get(key: string) {
