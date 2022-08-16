@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authToken, persistStore } from '../../../persistStore/persistStore';
 import ButtonBasic from './ButtonBasic';
-import { authToken } from '../../constants/local-storage';
 
 function ButtonLogOut() {
   const navigate = useNavigate()
   const logoutHandler = () => {
-    localStorage.removeItem(authToken);
+    persistStore.remove(authToken);
     navigate("/")
     window.location.reload();
   };

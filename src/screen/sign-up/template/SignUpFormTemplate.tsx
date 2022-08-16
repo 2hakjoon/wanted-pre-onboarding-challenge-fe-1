@@ -7,6 +7,7 @@ import useSignUp from '../hooks/useSignUp';
 import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
+import { persistStore } from '../../../persistStore/persistStore';
 
 export const SignUpFormContainer = styled.form`
   border: 2px solid gray;
@@ -29,7 +30,7 @@ function SignUpFormTemplate() {
   const signUpRequest = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
       window.alert('회원가입이 완료되었습니다.');
-      localStorage.setItem('TOKEN', token);
+      persistStore.set('TOKEN', token);
       navigate('/', { replace: true });
       window.location.reload();
     };

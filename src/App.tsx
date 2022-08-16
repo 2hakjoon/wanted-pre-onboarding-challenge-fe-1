@@ -4,10 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import SignUpScreen from './screen/sign-up/SignUpScreen';
 import LoginScreen from './screen/login/LoginScreen';
 import { routes } from './screen/routes';
-import { authToken } from './common/constants/local-storage';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
+import { authToken, persistStore } from './persistStore/persistStore';
 
 const Container = styled.main`
   width: 100%;
@@ -17,7 +17,7 @@ const Container = styled.main`
 `;
 
 function App() {
-  const isLoggedIn = !localStorage.getItem(authToken);
+  const isLoggedIn = !!persistStore.get(authToken);
 
   return (
     <Container>
@@ -27,13 +27,13 @@ function App() {
             <Routes>
               {isLoggedIn ? (
                 <>
-                  <Route path={routes.home} element={<LoginScreen />} />
-                  <Route path={routes.join} element={<SignUpScreen />} />
+                  <Route path={routes.home} element={<HomeScreen />} />
+                  <Route path={routes.todo} element={<HomeScreen />} />
                 </>
               ) : (
                 <>
-                  <Route path={routes.home} element={<HomeScreen />} />
-                  <Route path={routes.todo} element={<HomeScreen />} />
+                  <Route path={routes.home} element={<LoginScreen />} />
+                  <Route path={routes.join} element={<SignUpScreen />} />
                 </>
               )}
             </Routes>
