@@ -1,6 +1,6 @@
 import { buttonJoin, inputEmail, inputPassword, linkLogin } from '../data-tags';
 import { routes } from '../../../src/screen/routes';
-import { authToken } from '../../../src/common/constants/local-storage';
+import { authToken } from '../../../src/persistStore/persistStore';
 
 const emailRandom = `${Math.random()}@test.com`;
 const password = '12345678';

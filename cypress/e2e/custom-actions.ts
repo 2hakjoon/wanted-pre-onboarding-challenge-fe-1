@@ -1,4 +1,4 @@
-import { authToken } from "../../src/common/constants/local-storage"
+import { authToken } from "../../src/persistStore/persistStore"
 
 
 export const injectAuthTokenToLocalstorage = () => {
