@@ -8,6 +8,7 @@ import { TodoParams } from '../../../api/Todos/types';
 import useGetTodos from '../hooks/useGetTodos';
 import useGetTodoById from '../hooks/useGetTodoById';
 import useUpdateTodos from '../hooks/useUpdateTodo';
+import InputTextAreaBasic from '../../../common/components/input/InputTextAreaBasic';
 
 const FormWrapper = styled.form`
   display: flex;
@@ -16,7 +17,12 @@ const FormWrapper = styled.form`
     margin-bottom: 10px;
   }
   div {
-    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    .button-cancel {
+      margin-right: 20px;
+      background-color: gray;
+    }
   }
 `;
 
@@ -52,13 +58,19 @@ function TodoEditForm({ closeEditMode }: TodoEditForm) {
   return (
     <FormWrapper onSubmit={handleSubmit(handleUpdateTodo)}>
       <InputBasic register={register('title')} placeholder={todoData?.title || ''} data-cy="input-edit-todo-title" />
-      <InputBasic
+      <InputTextAreaBasic
         register={register('content')}
         placeholder={todoData?.content || ''}
         data-cy="input-edit-todo-content"
       />
       <div>
-        <ButtonBasic title="취소" type="button" data-cy="button-edit-cancel" onClick={closeEditMode} />
+        <ButtonBasic
+          className="button-cancel"
+          title="취소"
+          type="button"
+          data-cy="button-edit-cancel"
+          onClick={closeEditMode}
+        />
         <ButtonBasic title="저장" type="submit" data-cy="button-edit-save" />
       </div>
     </FormWrapper>
