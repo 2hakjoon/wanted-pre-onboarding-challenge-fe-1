@@ -11,9 +11,11 @@ export const TodoDetailContainer = styled.article`
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid darkgray;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 20px 20px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1); 
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1);
   .button-edit-mode {
     align-self: flex-end;
   }

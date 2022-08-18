@@ -6,10 +6,13 @@ import useGetTodos from '../hooks/useGetTodos';
 export const TodoListContainer = styled.section`
   width: 100%;
   height: 100%;
-  border: 2px solid darkgray;
-  border-radius: 30px;
-  margin-right: 50px;
+  border-radius: 10px;
+  margin-right: 30px;
   padding: 20px 10px 20px 20px;
+  background-color:#FAFAFA;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1); 
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
 `;
 
 const ListContainer = styled.ul`
@@ -18,7 +21,7 @@ const ListContainer = styled.ul`
   overflow-y: scroll;
   overflow-x: hidden;
   &::-webkit-scrollbar {
-    width: 10px; /*스크롤바의 너비*/
+    width: 5px; /*스크롤바의 너비*/
   }
 
   &::-webkit-scrollbar-thumb {

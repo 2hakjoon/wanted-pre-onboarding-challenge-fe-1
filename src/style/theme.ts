@@ -1,5 +1,5 @@
 const colors = {
-  blue: '#3065AC',
+  blue: '#0D47A1',
 };
 export type Color = typeof colors;
 
