@@ -32,8 +32,12 @@ const Container = styled.li`
     justify-content: space-between;
   }
   .text-title {
+    width: 150px;
     font-size: 18px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .text-date {
     font-size: 12px;
