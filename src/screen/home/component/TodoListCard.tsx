@@ -45,6 +45,7 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
 
   const deleteTodo = (e: React.MouseEvent<HTMLElement>, willDeleteTodoId: string) => {
     e.stopPropagation();
+    if (!window.confirm('삭제 하시겠습니까?')) return;
 
     mutate(willDeleteTodoId, {
       onSuccess: () => {
