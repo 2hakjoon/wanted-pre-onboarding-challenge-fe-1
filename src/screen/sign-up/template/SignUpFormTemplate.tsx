@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { SignUpError, SignUpParams, SignUpResponse } from '../../../api/Auth/types';
-import useSignUp from '../hooks/useSignUp';
 import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 import { persistStore } from '../../../persistStore/persistStore';
+import useSignUpMutation from '../hooks/useSignUpMutation';
 
 export const SignUpFormContainer = styled.form`
   border: 2px solid gray;
@@ -25,7 +25,7 @@ function SignUpFormTemplate() {
   const { register, getValues, formState, handleSubmit } = useForm<SignUpParams>({ mode: 'onChange' });
   const navigate = useNavigate();
 
-  const { mutate } = useSignUp();
+  const { mutate } = useSignUpMutation();
 
   const signUpRequest = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
