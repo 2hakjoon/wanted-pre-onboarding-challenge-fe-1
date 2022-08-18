@@ -20,11 +20,11 @@ function useSignUpForm() {
     resolver: yupResolver(schema),
   });
 
-  const isFormValid = () => {
+  const isFormNotValid = () => {
     return !!errors.email?.message || !!errors.password?.message;
   };
 
-  return { register, handleSubmit, isFormValid };
+  return { register, handleSubmit, isFormNotValid };
 }
 
 export default useSignUpForm;

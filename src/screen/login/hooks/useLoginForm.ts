@@ -22,7 +22,7 @@ function useLoginForm() {
     resolver: yupResolver(schema),
   });
 
-  const isFormValid = () => {
+  const isFormNotValid = () => {
     return !!errors.email?.message || !!errors.password?.message;
   };
 
@@ -30,7 +30,7 @@ function useLoginForm() {
     trigger();
   }, []);
 
-  return { register, errors, handleSubmit, isFormValid };
+  return { register, errors, handleSubmit, isFormNotValid };
 }
 
 export default useLoginForm;

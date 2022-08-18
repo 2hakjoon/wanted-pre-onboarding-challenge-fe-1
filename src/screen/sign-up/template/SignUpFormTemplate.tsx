@@ -25,7 +25,7 @@ function SignUpFormTemplate() {
   const navigate = useNavigate();
 
   const { mutate } = useSignUpMutation();
-  const { register, handleSubmit, isFormValid } = useSignUpForm();
+  const { register, handleSubmit, isFormNotValid } = useSignUpForm();
 
   const signUpRequest = ({ email, password }: SignUpParams) => {
     const onSuccess = ({ token }: SignUpResponse) => {
@@ -57,7 +57,7 @@ function SignUpFormTemplate() {
         register={register('password', { pattern: passwordPattern })}
         placeholder="비밀번호를 입력해주세요."
       />
-      <ButtonBasic title="회원가입" disabled={isFormValid()} type="submit" data-cy="button-join" />
+      <ButtonBasic title="회원가입" disabled={isFormNotValid()} type="submit" data-cy="button-join" />
       <a className="link-join" href="/" data-cy="link-login">
         로그인하기
       </a>

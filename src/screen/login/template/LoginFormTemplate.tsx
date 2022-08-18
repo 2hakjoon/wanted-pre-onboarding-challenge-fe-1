@@ -21,7 +21,7 @@ export const LoginFormContainer = styled.form`
 
 function LoginFormTemplate() {
   const { mutate } = useLoginMutation();
-  const { register, handleSubmit, isFormValid } = useLoginForm();
+  const { register, handleSubmit, isFormNotValid } = useLoginForm();
 
   const loginRequest = ({ email, password }: LoginParams) => {
     const onSuccess = ({ token }: LoginResponse) => {
@@ -53,7 +53,7 @@ function LoginFormTemplate() {
         register={register('password')}
         placeholder="비밀번호를 입력해주세요."
       />
-      <ButtonBasic title="로그인" type="submit" data-cy="button-login" disabled={isFormValid()} />
+      <ButtonBasic title="로그인" type="submit" data-cy="button-login" disabled={isFormNotValid()} />
       <a className="link-join" href="/join" data-cy="link-join">
         회원가입하기
       </a>
