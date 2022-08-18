@@ -10,8 +10,7 @@ import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 import { persistStore } from '../../../persistStore/persistStore';
 
 export const SignUpFormContainer = styled.form`
-  border: 2px solid gray;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 400px;
   height: 700px;
   display: flex;
@@ -19,6 +18,20 @@ export const SignUpFormContainer = styled.form`
   justify-content: space-around;
   align-items: center;
   padding: 20px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  span {
+    font-size: 20px;
+  }
+  .text-head {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 function SignUpFormTemplate() {
