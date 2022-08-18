@@ -14,19 +14,13 @@ import Header from '../../common/components/header/Header';
 const Container = styled.div`
   width: 1000px;
   height: 100vh;
-  padding-top: 50px;
   display: flex;
   flex-direction: column;
   .container-todo {
     display: flex;
-    height: 80%;
-    padding: 20px;
-    > :first-child {
-      width: 30%;
-    }
-    > :nth-child(2) {
-      width: 70%;
-    }
+    height: 650px;
+    padding-top: 20px;
+    justify-content: space-between;
   }
 `;
 

@@ -4,10 +4,9 @@ import TodoListCard from '../component/TodoListCard';
 import useGetTodos from '../hooks/useGetTodos';
 
 export const TodoListContainer = styled.section`
-  width: 100%;
+  width: 280px;
   height: 100%;
   border-radius: 10px;
-  margin-right: 30px;
   padding: 20px 10px 20px 20px;
   background-color:#FAFAFA;
   -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1); 
@@ -16,7 +15,7 @@ export const TodoListContainer = styled.section`
 `;
 
 const ListContainer = styled.ul`
-  padding-right: 10px;
+  padding-right: 5px;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;

@@ -19,7 +19,7 @@ const TodoDetailContailer = styled.section`
   }
   .text-content {
     font-size: 16px;
-    height: 400px;
+    height: 300px;
     margin-bottom: 20px;
     word-break: break-all;
     overflow-y: scroll;

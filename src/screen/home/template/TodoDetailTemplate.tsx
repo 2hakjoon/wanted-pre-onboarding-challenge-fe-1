@@ -7,7 +7,7 @@ import TodoDetail from '../component/TodoDetail';
 import IconEditBox from '../../../common/components/icons/IconEditBox';
 
 export const TodoDetailContainer = styled.article`
-  width: 100%;
+  width: 680px;
   height: 100%;
   display: flex;
   flex-direction: column;

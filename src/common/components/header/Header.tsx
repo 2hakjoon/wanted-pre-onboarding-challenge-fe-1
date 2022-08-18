@@ -24,7 +24,6 @@ const HeaderContainer = styled.header`
     display: block;
     font-size: 35px;
     font-weight: bold;
-    margin-left: 20px;
   }
 `;
 
@@ -38,7 +37,7 @@ function Header() {
     <>
       <HeaderContainer>
         <div className="inner-container">
-          <span className="text-header">Todo List</span>
+          <span className="text-header">Simple Todo List</span>
           <ButtonLogOut />
         </div>
       </HeaderContainer>
