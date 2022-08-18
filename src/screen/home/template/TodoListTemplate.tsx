@@ -32,14 +32,14 @@ const ListContainer = styled.ul`
 `;
 
 function TodoListTemplate() {
-  const { data: todosData, refetch: refetchTodos } = useGetTodos({ suspense: true });
+  const { data: todosData } = useGetTodos({ suspense: true });
 
   return (
     <TodoListContainer data-cy="container-todo-list">
       {todosData?.length ? (
         <ListContainer>
           {todosData.map((todo) => (
-            <TodoListCard key={todo.id} {...todo} refetchTodos={refetchTodos} />
+            <TodoListCard key={todo.id} {...todo}/>
           ))}
         </ListContainer>
       ) : (
