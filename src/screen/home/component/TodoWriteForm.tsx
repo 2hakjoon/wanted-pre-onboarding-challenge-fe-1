@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
 import { TodoParams } from '../../../api/Todos/types';
+import InputTextAreaBasic from '../../../common/components/input/InputTextAreaBasic';
 
 const FormWrapper = styled.form`
   display: flex;
@@ -38,8 +39,14 @@ function TodoWriteForm({ onSubmit }: TodoWriteFormProps) {
 
   return (
     <FormWrapper onSubmit={handleSubmit(saveTodoHandler)}>
-      <InputBasic register={register('title')} placeholder="주제." data-cy="input-todo-title" />
-      <InputBasic register={register('content')} placeholder="할 일을 입력 해 주세요." data-cy="input-todo-content" />
+      <div>
+        <InputBasic register={register('title')} placeholder="주제." data-cy="input-todo-title" />
+        <InputTextAreaBasic
+          register={register('content')}
+          placeholder="할 일을 입력 해 주세요."
+          data-cy="input-todo-content"
+        />
+      </div>
       <ButtonBasic title="저장" type="submit" data-cy="button-save-todo" />
     </FormWrapper>
   );
