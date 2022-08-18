@@ -4,7 +4,6 @@ import React from 'react';
 import { SignUpError, SignUpParams, SignUpResponse } from '../../../api/Auth/types';
 import InputLabel from '../../../common/components/input/InputLabel';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
-import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 import { persistStore } from '../../../persistStore/persistStore';
 import useSignUpMutation from '../hooks/useSignUpMutation';
 import useSignUpForm from '../hooks/useSignUpForm';
@@ -58,7 +57,7 @@ function SignUpFormTemplate() {
       <div className="input-container">
         <InputLabel
           title="이메일"
-          register={register('email', { pattern: emailPattern })}
+          register={register('email')}
           data-cy="input-email"
           placeholder="이메일을 입력해주세요."
         />
@@ -69,7 +68,7 @@ function SignUpFormTemplate() {
           title="비밀번호"
           data-cy="input-password"
           type="password"
-          register={register('password', { pattern: passwordPattern })}
+          register={register('password')}
           placeholder="비밀번호를 입력해주세요."
         />
         {passwordError && <span className="text-error">{passwordError}</span>}
