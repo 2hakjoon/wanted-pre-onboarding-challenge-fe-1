@@ -12,7 +12,8 @@ const skeletonKeyframes = keyframes`
 interface SkeletonSquareProps {
   height: string;
   width: string;
-  marginTop: string;
+  marginTop?: string;
+  marginBottom?: string;
 }
 
 const Skeleton = styled.div<SkeletonSquareProps>`
@@ -25,12 +26,17 @@ const Skeleton = styled.div<SkeletonSquareProps>`
   background-size: 200px 100%;
   background-repeat: no-repeat;
   border-radius: 4px;
-  margin-bottom: 8px;
+  margin-bottom: ${(props) => props.marginBottom || '0'};
   margin-top: ${(props) => props.marginTop || '0'};
 `;
 
 function SkeletonSquare(props: SkeletonSquareProps) {
   return <Skeleton {...props} />;
 }
+
+SkeletonSquare.defaultProps = {
+  marginTop: '0',
+  marginBottom: '0',
+};
 
 export default SkeletonSquare;
