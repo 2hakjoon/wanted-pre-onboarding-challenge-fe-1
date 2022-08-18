@@ -1,12 +1,11 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { LoginError, LoginParams, LoginResponse } from '../../../api/Auth/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputLabel from '../../../common/components/input/InputLabel';
-import { emailPattern, passwordPattern } from '../../../common/constants/regex';
 import { authTokenKey, persistStore } from '../../../persistStore/persistStore';
-import useLogin from '../hooks/useLogin';
+import useLoginMutation from '../hooks/useLoginMutation';
+import useLoginForm from '../hooks/useLoginForm';
 
 export const LoginFormContainer = styled.form`
   border-radius: 10px;
@@ -20,9 +19,6 @@ export const LoginFormContainer = styled.form`
   background-color: white;
   -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
-  span {
-    font-size: 20px;
-  }
   .text-head {
     font-size: 30px;
     font-weight: bold;
@@ -31,12 +27,25 @@ export const LoginFormContainer = styled.form`
     text-decoration: none;
     color: black;
   }
+  .input-container {
+    span {
+      font-size: 20px;
+    }
+    width: 100%;
+    height: 50px;
+    .text-error {
+      display: block;
+      margin-top: 10px;
+      color: red;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
 `;
 
 function LoginFormTemplate() {
-  const { register, getValues, formState, handleSubmit } = useForm<LoginParams>({ mode: 'onChange' });
-
-  const { mutate } = useLogin();
+  const { mutate } = useLoginMutation();
+  const { register, handleSubmit, isFormNotValid, emailError, passwordError } = useLoginForm();
 
   const loginRequest = ({ email, password }: LoginParams) => {
     const onSuccess = ({ token }: LoginResponse) => {
@@ -52,32 +61,30 @@ function LoginFormTemplate() {
     mutate({ email, password }, { onSuccess, onError });
   };
 
-  const isNotValild = () => {
-    return (
-      Boolean(formState.errors.email?.type) === true ||
-      Boolean(formState.errors.password?.type) === true ||
-      !getValues('email') ||
-      !getValues('password')
-    );
-  };
-
   return (
     <LoginFormContainer onSubmit={handleSubmit(loginRequest)}>
       <span className="text-head">로그인</span>
-      <InputLabel
-        title="이메일"
-        register={register('email', { pattern: emailPattern })}
-        data-cy="input-email"
-        placeholder="이메일을 입력해주세요."
-      />
-      <InputLabel
-        title="비밀번호"
-        data-cy="input-password"
-        type="password"
-        register={register('password', { pattern: passwordPattern })}
-        placeholder="비밀번호를 입력해주세요."
-      />
-      <ButtonBasic title="로그인" type="submit" data-cy="button-login" disabled={isNotValild()} />
+      <div className="input-container">
+        <InputLabel
+          title="이메일"
+          register={register('email')}
+          data-cy="input-email"
+          placeholder="이메일을 입력해주세요."
+        />
+        {emailError && <span className="text-error">{emailError}</span>}
+      </div>
+      <div className="input-container">
+        <InputLabel
+          title="비밀번호"
+          data-cy="input-password"
+          type="password"
+          register={register('password')}
+          placeholder="비밀번호를 입력해주세요."
+        />
+        {passwordError && <span className="text-error">{passwordError}</span>}
+      </div>
+
+      <ButtonBasic title="로그인" type="submit" data-cy="button-login" disabled={isFormNotValid()} />
       <a className="link-join" href="/join" data-cy="link-join">
         회원가입하기
       </a>

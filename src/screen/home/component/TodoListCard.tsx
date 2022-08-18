@@ -52,11 +52,8 @@ const Container = styled.li`
   }
 `;
 
-interface TodoListCardProps extends Todo {
-  refetchTodos: () => void;
-}
 
-function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps) {
+function TodoListCard({ id, title, createdAt }: Todo) {
   const { mutate } = useDeleteTodo();
   const { id: currentTodoId } = useParams();
   const navigate = useNavigate();
@@ -74,7 +71,6 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
         if (isCardSelected()) {
           navigate('/', { replace: true });
         }
-        refetchTodos();
       },
     });
   };

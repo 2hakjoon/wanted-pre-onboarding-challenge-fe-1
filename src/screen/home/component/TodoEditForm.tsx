@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputBasic from '../../../common/components/input/InputBasic';
 import { TodoParams } from '../../../api/Todos/types';
-import useGetTodos from '../hooks/useGetTodos';
 import useGetTodoById from '../hooks/useGetTodoById';
 import useUpdateTodos from '../hooks/useUpdateTodo';
 import InputTextAreaBasic from '../../../common/components/input/InputTextAreaBasic';
@@ -33,7 +32,6 @@ interface TodoEditForm {
 function TodoEditForm({ closeEditMode }: TodoEditForm) {
   const { id: todoId } = useParams();
   const { register, handleSubmit } = useForm<TodoParams>();
-  const { refetch: refetchTodos } = useGetTodos({ suspense: true });
   const { data: todoData, refetch: refetchTodo } = useGetTodoById(todoId);
   const { mutate } = useUpdateTodos();
 
@@ -48,9 +46,8 @@ function TodoEditForm({ closeEditMode }: TodoEditForm) {
     if (!window.confirm('수정 하시겠습니까?')) return;
 
     const onSuccess = () => {
-      closeEditMode();
-      refetchTodos();
       refetchTodo();
+      closeEditMode();
     };
     mutate({ id: todoId, params: { title, content } }, { onSuccess });
   };
