@@ -39,6 +39,7 @@ const Container = styled.li`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 1.2;
   }
   .text-date {
     font-size: 12px;

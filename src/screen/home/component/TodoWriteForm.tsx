@@ -30,6 +30,7 @@ const FormWrapper = styled.form`
     font-weight: bold;
     padding: 20px;
     flex-shrink: 0;
+    cursor: pointer;
   }
   .text-title {
     font-size: 20px;
