@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { SignUpParams } from '../../../api/Auth/types';
@@ -17,6 +18,7 @@ function useSignUpForm() {
     handleSubmit,
     getValues,
     watch,
+    trigger
   } = useForm<SignUpParams>({
     mode: 'onChange',
     resolver: yupResolver(schema),
@@ -26,6 +28,10 @@ function useSignUpForm() {
     return !!errors.email?.message || !!errors.password?.message;
   };
 
+  useEffect(() => {
+    trigger();
+  }, []);
+  
   const emailError = getValues('email') ? errors.email?.message : '';
   const passwordError = watch('password') ? errors.password?.message : '';
 
