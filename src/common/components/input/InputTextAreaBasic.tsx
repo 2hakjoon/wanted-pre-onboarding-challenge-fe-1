@@ -16,8 +16,8 @@ interface InputBasicProps {
   placeholder: string;
 }
 
-function InputTextAreaBasic({ register, placeholder }: InputBasicProps) {
-  return <Textarea {...register} placeholder={placeholder} />;
+function InputTextAreaBasic({ register, placeholder, ...rest }: InputBasicProps) {
+  return <Textarea {...register} placeholder={placeholder} {...rest} />;
 }
 
 export default InputTextAreaBasic;
