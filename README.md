@@ -1,24 +1,38 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제
 
-## 프로젝트 소개
-React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝트입니다.  
-챌린지 기간동안 리팩토링이 빈번할것으로 예상되어 cypress로 e2e테스트 자동화를 했습니다.  
-테스트 자동화로 인해 테스트 시간을 크게 절약 했습니다. 
+## 프로젝트 소개 및 회고
+원티드 프리온보딩 챌린지에 참가하여 진행한 Todo List 프로젝트입니다.  
+React Query라는 기술스택을 적용하여 비동기 데이터 처리의 복잡도를 줄여서 효율적으로 관리 할 수 있었습니다.  
+챌린지를 통해 클린코드, 관심사 분리, 선언적 프로그래밍, custom hooks활용 등을 배울 수 있었습니다.  
+이전의 기능구현 중심의 개발이 아닌 완성도 높은 코드에 더 집중하는 개발 자세를 가지게 되었습니다.  
+라이브러리를 단지 사용하는것 뿐만 아니라, 기본 원리를 이해하려고 노력하는 자세를 가지게 되었습니다. 
 
-### 기술 스택
-  * Typescript
+
+### 적용한 라이브러리
   * React
-  * React Query
-  * Cypress
+  * Typescript
+    * 타입기반의 안전한 프로그래밍을 위하여 적용했습니다.
+  * Axios
+    * 비동기 요청간의 Error Handling, Interceptor기능이 필요하여 적용했습니다.
+  * Tanstack React Query
+    * 비동기 데이터를 효과적으로 관리하기 위해 적용했습니다.
   * Styled Component
+    * UI 컴포넌트를 작성하기 위해 적용했습니다.
+  * Cypress
+    * 빈번한 리팩토링으로 인한 테스트시간을 줄이기 위해 적용했습니다.
+  * Yup
+    * form입력값의 유효성검사시, regex를 대체하기위해 적용했습니다.
+
+
 
 ## 챌린지 과정
-  * 1-1 회차 실천결과 : https://2hakjoon-mindmap.tistory.com/17  
+  * 1-1 회차 회고 : https://2hakjoon-mindmap.tistory.com/17  
     * 선언적 프로그래밍. HOW가 아닌 WHAT으로 코드를 작성해야 가독성이 더 좋다.
     * 관심사 분리. business로직과 view로직은 분리하자.
     * 적절한 추상화. 지나친 추상화는 오히려 안좋다. 컴포넌트간의 추상회 수준은 동일하게.
     * 비동기 처리. ErrorBoundary와 Suspense에 위임하기.
-  * 1-2 회차 실천결과 : https://2hakjoon-mindmap.tistory.com/18
+
+  * 1-2 회차 회고 : https://2hakjoon-mindmap.tistory.com/18
     * 외부 요소와의 결합이 강한 코드는 좋지 않다. ‘추상(abstraction)’에 의존하며 ‘구체(concretion)’에는 의존하지 말자.
     * 제어권 위임을 통해 결합을 느슨하게 하자. 대표적으로 콜백함수가 있다. React에서는 HOC가 예시 일것같다.
 
@@ -29,14 +43,15 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
   yarn start
   ```
 
-## 결과물 미리보기
-### Todo
-![localhost_3001_](https://user-images.githubusercontent.com/61589338/183292545-2787a57b-a5ee-4fcb-87f6-d3904b25ba85.png)
+## 데모 영상
 ### Login
-![localhost_3001_ (1)](https://user-images.githubusercontent.com/61589338/183292595-c2e0006e-8033-4ac7-ba44-b92230f53060.png)
+[screen-recording (1).webm](https://user-images.githubusercontent.com/61589338/185561611-82df89db-4149-4045-90df-43ffe4a58431.webm)
 
-### Join
-![localhost_3001_join](https://user-images.githubusercontent.com/61589338/183292628-d7911985-3dee-4d93-8566-e8c5d2668f35.png)
+### Todo CRUD
+[screen-recording (4).webm](https://user-images.githubusercontent.com/61589338/185561986-5ed155fb-392d-4308-80f5-77dea3c77dbe.webm)
+
+### Todo Loading
+[screen-recording (2).webm](https://user-images.githubusercontent.com/61589338/185561681-db795cd3-8ebe-473e-9197-706fb2a46ba4.webm)
 
 
 ## 과제 구현 내용
@@ -68,6 +83,16 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
 * 한 페이지 내에서 새로고침 없이 데이터가 정합성을 갖추도록 구현.
   - [x] 수정되는 Todo의 내용이 목록에서도 실시간으로 반영됨.
 
+## UI Before and After
+
+### Before
+Todo
+![localhost_3001_](https://user-images.githubusercontent.com/61589338/183292545-2787a57b-a5ee-4fcb-87f6-d3904b25ba85.png)
+
+### After
+Todo
+![localhost_3001_ (3)](https://user-images.githubusercontent.com/61589338/185561259-02211ade-9ab4-465b-bf5b-6feaa93b5bb3.png)
+
 
 ## Cypress e2e 테스트
 1. e2e 테스트를 하기 앞서서 react서버를 실행시킵니다.
@@ -90,52 +115,155 @@ React Query라는 기술스택을 새롭게 공부하면서 진행한 프로젝�
 
 ## 프로젝트 구조
 ```bash
-├── cypress
-│   ├── e2e
-├── package.json
-├── public
-├── src
-│   ├── App.tsx
-│   ├── api
-│   │   ├── Auth
-│   │   │   ├── login.ts
-│   │   │   └── signUp.ts
-│   │   ├── Todos
-│   │   │   ├── todos.ts
-│   │   │   └── types.ts
-│   │   ├── custom-fetch.ts
-│   │   └── endpoints.ts
-│   ├── common
-│   │   ├── components
-│   │   │   ├── button
-│   │   │   │   └── ButtonBasic.tsx
-│   │   │   └── input
-│   │   │       ├── InputBasic.tsx
-│   │   │       └── InputLabel.tsx
-│   │   └── constants
-│   │       ├── local-storage.ts
-│   │       └── regex.ts
-│   ├── index.css
-│   ├── index.tsx
-│   ├── react-app-env.d.ts
-│   ├── screen
-│   │   ├── home
-│   │   │   ├── HomeScreen.tsx
-│   │   │   ├── component
-│   │   │   │   ├── TodoDetail.tsx
-│   │   │   │   └── TodoListCard.tsx
-│   │   │   └── template
-│   │   │       └── TodoListTemplate.tsx
-│   │   ├── login
-│   │   │   └── LoginScreen.tsx
-│   │   ├── routes.ts
-│   │   └── sign-up
-│   │       └── SignUpScreen.tsx
-│   ├── setupTests.ts
-│   ├── style
-│   │   └── theme.ts
-│   └── types
-│       └── styled-component.d.ts
-├── tsconfig.json
-└── yarn.lock
+|   .eslintrc
+|   .gitignore
+|   .prettierrc
+|   cypress.config.ts
+|   package.json
+|   README.md
+|   test.txt
+|   tsconfig.json
+|   yarn.lock
+|   
++---cypress
+|   +---downloads
+|   +---e2e
+|   |   |   custom-actions.ts
+|   |   |   data-tags.ts
+|   |   |   
+|   |   +---auth
+|   |   |       join.cy.ts
+|   |   |       login.cy.ts
+|   |   |       logout.cy.ts
+|   |   |       
+|   |   \---todo
+|   |           todo.cy.ts
+|   |           
+|   +---fixtures
+|   |       example.json
+|   |       
+|   \---support
+|           commands.ts
+|           e2e.ts
+|           
++---public
+|       favicon.ico
+|       index.html
+|       logo192.png
+|       logo512.png
+|       manifest.json
+|       robots.txt
+|       
+\---src
+    |   App.tsx
+    |   index.css
+    |   index.tsx
+    |   react-app-env.d.ts
+    |   setupTests.ts
+    |   
+    +---api
+    |   |   custom-fetch.ts
+    |   |   endpoints.ts
+    |   |   
+    |   +---Auth
+    |   |       auth.ts
+    |   |       types.ts
+    |   |       
+    |   \---Todos
+    |           todos.ts
+    |           types.ts
+    |           
+    +---common
+    |   \---components
+    |       +---button
+    |       |       ButtonBasic.tsx
+    |       |       ButtonLogOut.tsx
+    |       |       ButtonWrapper.tsx
+    |       |       
+    |       +---error-loading
+    |       |       ErrorBoundary.tsx
+    |       |       LoadingAndError.tsx
+    |       |       
+    |       +---header
+    |       |       Header.tsx
+    |       |       
+    |       +---helmet
+    |       |       TitleHelmet.tsx
+    |       |       
+    |       +---icons
+    |       |       IconEditBox.tsx
+    |       |       IconTrashBox.tsx
+    |       |       
+    |       +---input
+    |       |       InputBasic.tsx
+    |       |       InputLabel.tsx
+    |       |       InputTextAreaBasic.tsx
+    |       |       
+    |       \---skeleton
+    |               SkeletonSquare.tsx
+    |               
+    +---persistStore
+    |       persistStore.ts
+    |       
+    +---reactQuery
+    |       reactQuery.ts
+    |       
+    +---screen
+    |   |   routes.ts
+    |   |   
+    |   +---home
+    |   |   |   HomeScreen.tsx
+    |   |   |   
+    |   |   +---component
+    |   |   |       TodoDetail.tsx
+    |   |   |       TodoEditForm.tsx
+    |   |   |       TodoListCard.tsx
+    |   |   |       TodoListCardLoading.tsx
+    |   |   |       TodoWriteForm.tsx
+    |   |   |       
+    |   |   +---hooks
+    |   |   |       useCreateTodo.ts
+    |   |   |       useDeleteTodo.ts
+    |   |   |       useGetTodoById.ts
+    |   |   |       useGetTodos.ts
+    |   |   |       useUpdateTodo.ts
+    |   |   |       
+    |   |   \---template
+    |   |           TodoDetailError.tsx
+    |   |           TodoDetailLoading.tsx
+    |   |           TodoDetailTemplate.tsx
+    |   |           TodoListError.tsx
+    |   |           TodoListLoading.tsx
+    |   |           TodoListTemplate.tsx
+    |   |           TodoWriteTemplate.tsx
+    |   |           
+    |   +---login
+    |   |   |   LoginScreen.tsx
+    |   |   |   
+    |   |   +---hooks
+    |   |   |       useLoginForm.ts
+    |   |   |       useLoginMutation.ts
+    |   |   |       
+    |   |   \---template
+    |   |           LoginFormError.tsx
+    |   |           LoginFormLoading.tsx
+    |   |           LoginFormTemplate.tsx
+    |   |           
+    |   \---sign-up
+    |       |   SignUpScreen.tsx
+    |       |   
+    |       +---hooks
+    |       |       useSignUpForm.ts
+    |       |       useSignUpMutation.ts
+    |       |       
+    |       \---template
+    |               SignUpFormError.tsx
+    |               SignUpFormLoading.tsx
+    |               SignUpFormTemplate.tsx
+    |               
+    +---style
+    |       theme.ts
+    |       
+    \---types
+            styled-component.d.ts
 ```
