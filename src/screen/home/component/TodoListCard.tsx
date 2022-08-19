@@ -6,6 +6,7 @@ import { Todo } from '../../../api/Todos/types';
 import { routes } from '../../routes';
 import useDeleteTodo from '../hooks/useDeleteTodo';
 import IconTrashBox from '../../../common/components/icons/IconTrashBox';
+import ButtonWrapper from '../../../common/components/button/ButtonWrapper';
 
 const Container = styled.li`
   display: flex;
@@ -42,16 +43,7 @@ const Container = styled.li`
   .text-date {
     font-size: 12px;
   }
-  .button-delete {
-    font-size: 18px;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-  }
 `;
-
 
 function TodoListCard({ id, title, createdAt }: Todo) {
   const { mutate } = useDeleteTodo();
@@ -85,15 +77,9 @@ function TodoListCard({ id, title, createdAt }: Todo) {
           {`${dayjs(createdAt).format('YYYY/MM/DD')}`}
         </span>
       </Link>
-      <button
-        className="button-delete"
-        title="X"
-        type="button"
-        data-cy="button-delete-todo"
-        onClick={(e) => deleteTodo(e, id)}
-      >
+      <ButtonWrapper type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodo(e, id)}>
         <IconTrashBox />
-      </button>
+      </ButtonWrapper>
     </Container>
   );
 }

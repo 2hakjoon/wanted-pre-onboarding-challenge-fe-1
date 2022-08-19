@@ -5,6 +5,7 @@ import TodoEditForm from '../component/TodoEditForm';
 import useGetTodoById from '../hooks/useGetTodoById';
 import TodoDetail from '../component/TodoDetail';
 import IconEditBox from '../../../common/components/icons/IconEditBox';
+import ButtonWrapper from '../../../common/components/button/ButtonWrapper';
 
 export const TodoDetailContainer = styled.article`
   width: 680px;
@@ -16,12 +17,13 @@ export const TodoDetailContainer = styled.article`
   background-color: white;
   -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
-  .button-edit-mode {
-    align-self: flex-end;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
+  .container-edit {
+    display: flex;
+    border-bottom: 1px solid gray;
+    justify-content: flex-end;
+    button {
+      align-items: flex-end;
+    }
   }
 `;
 
@@ -40,14 +42,17 @@ function TodoDetailTemplate() {
 
   return (
     <TodoDetailContainer>
-      {todoData &&
-        (!editMode ? (
-          <button className="button-edit-mode" type="button" data-cy="button-edit-mode" onClick={openEditMode}>
-            <IconEditBox />
-          </button>
-        ) : (
-          <TodoEditForm closeEditMode={closeEditMode} />
-        ))}
+      {todoData && (
+        <div className="container-edit">
+          {!editMode ? (
+            <ButtonWrapper type="button" data-cy="button-edit-mode" onClick={openEditMode}>
+              <IconEditBox />
+            </ButtonWrapper>
+          ) : (
+            <TodoEditForm closeEditMode={closeEditMode} />
+          )}
+        </div>
+      )}
       <TodoDetail />
     </TodoDetailContainer>
   );

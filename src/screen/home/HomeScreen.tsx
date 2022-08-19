@@ -13,7 +13,7 @@ import Header from '../../common/components/header/Header';
 
 const Container = styled.div`
   width: 1000px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   .container-todo {

@@ -7,7 +7,6 @@ import useGetTodoById from '../hooks/useGetTodoById';
 const TodoDetailContailer = styled.section`
   display: flex;
   flex-direction: column;
-  border-top: 1px solid lightgray;
   padding-top: 10px;
   .text-title {
     font-size: 20px;
