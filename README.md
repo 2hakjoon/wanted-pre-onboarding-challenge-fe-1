@@ -25,24 +25,6 @@ React Query라는 기술스택을 적용하여 비동기 데이터 처리의 복
 - Yup
   - form입력값의 유효성검사시, regex를 대체하기위해 적용했습니다.
 
-## 챌린지 과정
-
-- 1-1 회차 회고 : https://2hakjoon-mindmap.tistory.com/17
-
-  - 선언적 프로그래밍. HOW가 아닌 WHAT으로 코드를 작성해야 가독성이 더 좋다.
-  - 관심사 분리. business로직과 view로직은 분리하자.
-  - 적절한 추상화. 지나친 추상화는 오히려 안좋다. 컴포넌트간의 추상회 수준은 동일하게.
-  - 비동기 처리. ErrorBoundary와 Suspense에 위임하기.
-
-- 1-2 회차 회고 : https://2hakjoon-mindmap.tistory.com/18
-
-  - 외부 요소와의 결합이 강한 코드는 좋지 않다. ‘추상(abstraction)’에 의존하며 ‘구체(concretion)’에는 의존하지 말자.
-  - 제어권 위임을 통해 결합을 느슨하게 하자. 대표적으로 콜백함수가 있다. React에서는 HOC가 예시 일것같다.
-
-- 2-1 회차 회고 : https://2hakjoon-mindmap.tistory.com/19
-  - 공식문서를 근거로 코드를 작성하는 습관.
-  - UI 수정.
-
 ## 설치 및 실행
 
 ```bash
@@ -74,6 +56,26 @@ npx cypress open
   ```
 - todo
   - todo 리스트가 없는 상태에서 테스트를 진행해주세요.
+
+
+## 챌린지 과정
+
+- 1-1 회차 회고 : https://2hakjoon-mindmap.tistory.com/17
+
+  - 선언적 프로그래밍. HOW가 아닌 WHAT으로 코드를 작성해야 가독성이 더 좋다.
+  - 관심사 분리. business로직과 view로직은 분리하자.
+  - 적절한 추상화. 지나친 추상화는 오히려 안좋다. 컴포넌트간의 추상회 수준은 동일하게.
+  - 비동기 처리. ErrorBoundary와 Suspense에 위임하기.
+
+- 1-2 회차 회고 : https://2hakjoon-mindmap.tistory.com/18
+
+  - 외부 요소와의 결합이 강한 코드는 좋지 않다. ‘추상(abstraction)’에 의존하며 ‘구체(concretion)’에는 의존하지 말자.
+  - 제어권 위임을 통해 결합을 느슨하게 하자. 대표적으로 콜백함수가 있다. React에서는 HOC가 예시 일것같다.
+
+- 2-1 회차 회고 : https://2hakjoon-mindmap.tistory.com/19
+  - 공식문서를 근거로 코드를 작성하는 습관.
+  - UI 수정.
+
 
 ## 데모 영상
 
