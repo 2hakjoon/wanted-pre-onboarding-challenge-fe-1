@@ -5,6 +5,7 @@ import { LoginParams, LoginResponse } from '../../../api/Auth/types';
 import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import InputLabel from '../../../common/components/input/InputLabel';
 import { emailPattern, passwordPattern } from '../../../common/constants/regex';
+import useDispatch from '../../../hedux/hooks/useDispatch';
 import useLogin from '../hooks/useLogin';
 
 const FormWrapper = styled.form`
@@ -22,6 +23,7 @@ const FormWrapper = styled.form`
 function LoginFormTemplate() {
   const { register, getValues, formState, handleSubmit } = useForm<LoginParams>({ mode: 'onChange' });
 
+  const { dispatch } = useDispatch();
   const { mutate } = useLogin();
 
   const loginAndRefresh = ({ email, password }: LoginParams) => {
@@ -34,7 +36,9 @@ function LoginFormTemplate() {
       if (token) {
         window.alert('로그인이 완료되었습니다.');
         localStorage.setItem('TOKEN', token);
-        window.location.reload();
+        // window.location.reload();
+
+        dispatch('auth', { isLoggedIn: true });
       }
     };
 

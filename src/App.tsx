@@ -9,7 +9,6 @@ import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
 import useSelector from './hedux/hooks/useSelector';
 import { HeduxAuthType } from './hedux/moudles/auth';
-import useDispatch from './hedux/hooks/useDispatch';
 
 const Container = styled.main`
   width: 100%;
@@ -20,7 +19,8 @@ const Container = styled.main`
 
 function App() {
   const { isLoggedIn } = useSelector<HeduxAuthType>('auth');
-  
+  console.log(isLoggedIn)
+
   return (
     <Container>
       <ErrorBoundary>
@@ -29,13 +29,13 @@ function App() {
             <Routes>
               {isLoggedIn ? (
                 <>
-                  <Route path={routes.home} element={<LoginScreen />} />
-                  <Route path={routes.join} element={<SignUpScreen />} />
+                  <Route path={routes.home} element={<HomeScreen />} />
+                  <Route path={routes.todo} element={<HomeScreen />} />
                 </>
               ) : (
                 <>
-                  <Route path={routes.home} element={<HomeScreen />} />
-                  <Route path={routes.todo} element={<HomeScreen />} />
+                  <Route path={routes.home} element={<LoginScreen />} />
+                  <Route path={routes.join} element={<SignUpScreen />} />
                 </>
               )}
             </Routes>

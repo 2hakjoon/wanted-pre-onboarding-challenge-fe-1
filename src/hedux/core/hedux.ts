@@ -3,6 +3,8 @@ import { Hedux, HeduxReducer } from './types';
 
 function createHeduxStore<T>(initState: T, { reducer }: HeduxReducer<T>): Hedux<T> {
   let state: T = initState;
+  const observer: any[] = [];
+  console.log(`observer : ${observer}`);
 
   const getState = (key: keyof T): Partial<T> => {
     const data = state[key];
@@ -11,9 +13,18 @@ function createHeduxStore<T>(initState: T, { reducer }: HeduxReducer<T>): Hedux<
 
   const dispatch = (type: string, payload?: { [k: string]: any }) => {
     state = reducer(state, { type, payload });
+    reflect();
   };
 
-  return { getState, dispatch };
+  const reflect = () => {
+    observer.forEach((rerender) => rerender());
+  };
+
+  const subscribe = (trigger: () => void) => {
+    observer.push(trigger);
+  };
+
+  return { getState, dispatch, reflect, subscribe };
 }
 
 export default createHeduxStore;
