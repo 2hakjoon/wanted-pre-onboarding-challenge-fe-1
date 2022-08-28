@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import createHeduxStore from './hedux/core/hedux';
 import reducer from './hedux/reducer/reducer';
+import { HeduxInitState, heduxInitState } from './hedux/moudles';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient({
@@ -21,7 +22,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const heduxStore = createHeduxStore({ reducer });
+const heduxStore = createHeduxStore<HeduxInitState>(heduxInitState, { reducer });
 export const HeduxStore = createContext(heduxStore);
 
 root.render(
