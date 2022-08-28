@@ -10,7 +10,9 @@ function reducer<T>(state: T, action?: HeduxActionObj): T {
   if (action.type === 'auth') {
     return {
       ...state,
-      ...action.payload,
+      auth: {
+        ...action.payload,
+      },
     };
   }
   return {
