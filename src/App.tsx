@@ -7,7 +7,8 @@ import { routes } from './screen/routes';
 import HomeScreen from './screen/home/HomeScreen';
 import { theme } from './style/theme';
 import ErrorBoundary from './common/components/error-loading/ErrorBoundary';
-import { authTokenKey, persistStore } from './persistStore/persistStore';
+import useSelector from './hedux/hooks/useSelector';
+import { HeduxAuthType } from './hedux/moudles/auth';
 
 const Container = styled.main`
   width: 100%;
@@ -19,7 +20,7 @@ const Container = styled.main`
 `;
 
 function App() {
-  const isLoggedIn = !!persistStore.get(authTokenKey);
+  const { isLoggedIn } = useSelector<HeduxAuthType>('auth');
 
   return (
     <Container>
