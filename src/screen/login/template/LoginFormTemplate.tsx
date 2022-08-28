@@ -6,6 +6,7 @@ import InputLabel from '../../../common/components/input/InputLabel';
 import { authTokenKey, persistStore } from '../../../persistStore/persistStore';
 import useLoginMutation from '../hooks/useLoginMutation';
 import useLoginForm from '../hooks/useLoginForm';
+import useDispatch from '../../../hedux/hooks/useDispatch';
 
 export const LoginFormContainer = styled.form`
   border-radius: 10px;
@@ -44,6 +45,7 @@ export const LoginFormContainer = styled.form`
 `;
 
 function LoginFormTemplate() {
+  const dispatch = useDispatch();
   const { mutate } = useLoginMutation();
   const { register, handleSubmit, isFormNotValid, emailError, passwordError } = useLoginForm();
 
@@ -51,7 +53,7 @@ function LoginFormTemplate() {
     const onSuccess = ({ token }: LoginResponse) => {
       window.alert('로그인이 완료되었습니다.');
       persistStore.set(authTokenKey, token);
-      window.location.reload();
+      dispatch('auth', { isLoggedIn: true });
     };
 
     const onError = ({ response }: LoginError) => {

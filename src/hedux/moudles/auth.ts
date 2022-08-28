@@ -1,6 +1,7 @@
+import { authTokenKey, persistStore } from '../../persistStore/persistStore';
+
 export const heduxAuthInitState = {
-  auth: { isLoggedIn: false },
+  auth: { isLoggedIn: !!persistStore.get(authTokenKey) },
 };
 
-
-export type HeduxAuthType = typeof heduxAuthInitState.auth
+export type HeduxAuthType = typeof heduxAuthInitState.auth;
