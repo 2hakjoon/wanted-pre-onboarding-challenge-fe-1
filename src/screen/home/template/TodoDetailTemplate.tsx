@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import TodoEditForm from '../component/TodoEditForm';
 import useGetTodoById from '../hooks/useGetTodoById';
 import TodoDetail from '../component/TodoDetail';
+import IconEditBox from '../../../common/components/icons/IconEditBox';
+import ButtonWrapper from '../../../common/components/button/ButtonWrapper';
 
 export const TodoDetailContainer = styled.article`
-  width: 100%;
+  width: 680px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid darkgray;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 20px 20px;
-  .button-edit-mode {
-    align-self: flex-end;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  .container-edit {
+    display: flex;
+    border-bottom: 1px solid gray;
+    justify-content: flex-end;
+    button {
+      align-items: flex-end;
+    }
   }
 `;
 
@@ -34,18 +42,17 @@ function TodoDetailTemplate() {
 
   return (
     <TodoDetailContainer>
-      {todoData &&
-        (!editMode ? (
-          <ButtonBasic
-            className="button-edit-mode"
-            title="수정"
-            type="button"
-            data-cy="button-edit-mode"
-            onClick={openEditMode}
-          />
-        ) : (
-          <TodoEditForm closeEditMode={closeEditMode} />
-        ))}
+      {todoData && (
+        <div className="container-edit">
+          {!editMode ? (
+            <ButtonWrapper type="button" data-cy="button-edit-mode" onClick={openEditMode}>
+              <IconEditBox />
+            </ButtonWrapper>
+          ) : (
+            <TodoEditForm closeEditMode={closeEditMode} />
+          )}
+        </div>
+      )}
       <TodoDetail />
     </TodoDetailContainer>
   );

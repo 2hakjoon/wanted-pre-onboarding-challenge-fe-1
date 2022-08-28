@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+import { ErrorResponse } from '../custom-fetch';
 
 export interface LoginParams {
   email: string;
@@ -5,11 +7,11 @@ export interface LoginParams {
 }
 
 export interface LoginResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
 
+export type LoginError = AxiosError<ErrorResponse>
 
 export interface SignUpParams {
   email: string;
@@ -17,7 +19,8 @@ export interface SignUpParams {
 }
 
 export interface SignUpResponse {
-  message?: string;
-  token?: string;
-  details?: string;
+  message: string;
+  token: string;
 }
+
+export type SignUpError = AxiosError<ErrorResponse>

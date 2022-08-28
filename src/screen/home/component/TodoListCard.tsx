@@ -4,54 +4,66 @@ import dayjs from 'dayjs';
 import styled from 'styled-components';
 import { Todo } from '../../../api/Todos/types';
 import { routes } from '../../routes';
-import ButtonBasic from '../../../common/components/button/ButtonBasic';
 import useDeleteTodo from '../hooks/useDeleteTodo';
+import IconTrashBox from '../../../common/components/icons/IconTrashBox';
+import ButtonWrapper from '../../../common/components/button/ButtonWrapper';
 
 const Container = styled.li`
   display: flex;
-  border: 2px solid darkgray;
-  padding: 20px;
-  border-radius: 20px;
+  border: 1px solid darkgray;
+  padding: 15px;
+  border-radius: 5px;
   justify-content: space-between;
   margin-bottom: 10px;
   &.selected {
-    background-color: skyblue;
-    span {
+    background-color: #0d47a1;
+    span,
+    button > svg {
       color: white;
+      fill: white;
     }
   }
   > a {
+    width: 100%;
+    margin-right: 10px;
     color: black;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+  .text-title {
+    width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .text-date {
+    font-size: 12px;
+  }
 `;
 
-interface TodoListCardProps extends Todo {
-  refetchTodos: () => void;
-}
-
-function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps) {
+function TodoListCard({ id, title, createdAt }: Todo) {
   const { mutate } = useDeleteTodo();
   const { id: currentTodoId } = useParams();
   const navigate = useNavigate();
 
   const isCardSelected = () => {
-    return id === currentTodoId
-  }
-
+    return id === currentTodoId;
+  };
 
   const deleteTodo = (e: React.MouseEvent<HTMLElement>, willDeleteTodoId: string) => {
     e.stopPropagation();
+    if (!window.confirm('삭제 하시겠습니까?')) return;
 
     mutate(willDeleteTodoId, {
       onSuccess: () => {
         if (isCardSelected()) {
           navigate('/', { replace: true });
         }
-        refetchTodos();
       },
     });
   };
@@ -59,10 +71,16 @@ function TodoListCard({ id, title, createdAt, refetchTodos }: TodoListCardProps)
   return (
     <Container data-cy="container-todo-card" className={`${isCardSelected() ? 'selected' : ''}`}>
       <Link to={routes.home + id} data-cy="link-todo-detail">
-        <span data-cy="text-todo-list-title">{title}</span>
-        <span data-cy="text-todo-list-createdAt">{`${dayjs(createdAt).format('YYYY/MM/DD')}`}</span>
+        <span data-cy="text-todo-list-title" className="text-title">
+          {title}
+        </span>
+        <span data-cy="text-todo-list-createdAt" className="text-date">
+          {`${dayjs(createdAt).format('YYYY/MM/DD')}`}
+        </span>
       </Link>
-      <ButtonBasic title="X" type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodo(e, id)} />
+      <ButtonWrapper type="button" data-cy="button-delete-todo" onClick={(e) => deleteTodo(e, id)}>
+        <IconTrashBox />
+      </ButtonWrapper>
     </Container>
   );
 }

@@ -2,12 +2,13 @@ import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const Textarea = styled.textarea`
   width: 100%;
-  height: 30px;
+  min-height: 80px;
   border: 2px solid darkgray;
   border-radius: 8px;
   padding-left: 8px;
+  resize: none;
 `;
 
 interface InputBasicProps {
@@ -15,8 +16,8 @@ interface InputBasicProps {
   placeholder: string;
 }
 
-function InputBasic({ register, placeholder, ...rest }: InputBasicProps) {
-  return <Input {...register} className="input" placeholder={placeholder} {...rest} />;
+function InputTextAreaBasic({ register, placeholder, ...rest }: InputBasicProps) {
+  return <Textarea {...register} placeholder={placeholder} {...rest} />;
 }
 
-export default InputBasic;
+export default InputTextAreaBasic;
