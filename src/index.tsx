@@ -8,7 +8,7 @@ import App from './App';
 import { queryClient } from './reactQuery/reactQuery';
 import createHeduxStore from './hedux/core/hedux';
 import { heduxInitState, HeduxInitState } from './hedux/moudles';
-import reducer from './hedux/reducer/reducer';
+import { reducer } from './hedux/reducer/reducer';
 import HeduxProvider from './hedux/component/HeduxProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
