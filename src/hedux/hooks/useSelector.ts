@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { HeduxStore } from '../..';
+import { HeduxContext } from '../component/HeduxContext';
 import { HeduxInitState } from '../moudles';
 
 function useSelector<T>(key: keyof HeduxInitState): T {
-  const storeState = useContext(HeduxStore).getState(key);
-  const { subscribe } = useContext(HeduxStore);
-  const [state, setState] = useState(Math.random());
+  const storeState = useContext(HeduxContext).getState()?.[key];
+  const { subscribe } = useContext(HeduxContext);
+  const [, setState] = useState(Math.random());
 
   useEffect(() => {
     const unSubscribe = subscribe(() => setState(Math.random()));
