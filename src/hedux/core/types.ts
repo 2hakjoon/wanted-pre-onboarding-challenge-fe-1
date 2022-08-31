@@ -2,11 +2,9 @@
 
 import { HeduxActionObj } from '../reducer/types';
 
-export interface Hedux {
+export interface HeduxStore {
   getState: () => any;
   dispatch: (type: string, payload?: { [k: string]: any }) => void;
-  reflect: () => void;
-  subscribe: (arg: () => void) => () => void;
 }
 
 export interface HeduxReducer<T> {
