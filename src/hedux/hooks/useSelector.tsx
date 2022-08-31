@@ -8,8 +8,8 @@ function useSelector<T>(key: keyof HeduxInitState): T {
   const [state, setState] = useState(Math.random());
 
   useEffect(() => {
-    subscribe(() => setState(Math.random()));
-    // const trigUpdate = () => setState(Math.random());
+    const unSubscribe = subscribe(() => setState(Math.random()));
+    return () => unSubscribe();
   }, []);
   return storeState;
 }

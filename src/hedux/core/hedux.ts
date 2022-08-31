@@ -3,7 +3,6 @@ import { Hedux, HeduxReducer } from './types';
 
 function createHeduxStore<T>(initState: T, { reducer }: HeduxReducer<T>): Hedux<T> {
   let state: T = initState;
-  const observer: any[] = [];
 
   const getState = (key: keyof T): Partial<T> => {
     const data = state[key];
@@ -15,13 +14,51 @@ function createHeduxStore<T>(initState: T, { reducer }: HeduxReducer<T>): Hedux<
     reflect();
   };
 
+  // Todo : utils/subscirbe로 분리하기.
+  interface Listener {
+    callback: () => void;
+    prev: Listener | null;
+    next: Listener | null;
+  }
+
+  let first: Listener | null = null;
+  let last: Listener | null = null;
+
   const reflect = () => {
-    observer.forEach((rerender) => rerender());
+    let listener = first;
+    while (listener) {
+      listener.callback();
+      listener = listener.next;
+    }
   };
 
   const subscribe = (trigger: () => void) => {
-    observer.push(trigger);
+    const newListener: Listener = {
+      callback: trigger,
+      prev: last,
+      next: null,
+    };
+    if (newListener.prev !== null) {
+      newListener.prev.next = newListener;
+      last = newListener;
+    } else {
+      first = newListener;
+      last = newListener;
+    }
+    return function unsubscribe() {
+      if (newListener.prev) {
+        newListener.prev.next = newListener.next;
+      } else {
+        first = newListener.next;
+      }
+      if (newListener.next) {
+        newListener.next.prev = newListener.prev;
+      } else {
+        last = newListener.prev;
+      }
+    };
   };
+  // 여기까지 포함.
 
   return { getState, dispatch, reflect, subscribe };
 }
