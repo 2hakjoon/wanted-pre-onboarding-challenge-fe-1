@@ -5,9 +5,8 @@ interface CombineRedcuerArgs {
   [k: string]: (state: any, action: HeduxActionObj) => any;
 }
 
-function combineRedcuer(reducers: CombineRedcuerArgs) {
+function combineReducers(reducers: CombineRedcuerArgs) {
   return function rootReducer<T>(state: T, action: HeduxActionObj): T {
-
     // eslint-disable-next-line no-restricted-syntax
     for (const reducer of Object.values(reducers)) {
       // eslint-disable-next-line no-param-reassign
@@ -19,4 +18,4 @@ function combineRedcuer(reducers: CombineRedcuerArgs) {
   };
 }
 
-export default combineRedcuer;
+export default combineReducers;

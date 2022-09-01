@@ -1,4 +1,4 @@
 import { authReducer } from '../moudles/auth';
-import combineRedcuer from './combineReducer';
+import combineReducers from './combineReducer';
 
-export const reducer = combineRedcuer({ authReducer });
+export const reducer = combineReducers({ authReducer });
