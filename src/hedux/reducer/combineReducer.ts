@@ -2,18 +2,14 @@ import { HeduxActionObj } from './types';
 
 interface CombineRedcuerArgs {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: (state: any, action?: HeduxActionObj) => any;
+  [k: string]: (state: any, action: HeduxActionObj) => any;
 }
 
 function combineRedcuer(reducers: CombineRedcuerArgs) {
-  return <T>(state: T, action?: HeduxActionObj): T => {
-    if (!action) {
-      return {
-        ...state,
-      };
-    }
+  return function rootReducer<T>(state: T, action: HeduxActionObj): T {
+
     // eslint-disable-next-line no-restricted-syntax
-    for (const [, reducer] of Object.entries(reducers)) {
+    for (const reducer of Object.values(reducers)) {
       // eslint-disable-next-line no-param-reassign
       state = reducer(state, action);
     }

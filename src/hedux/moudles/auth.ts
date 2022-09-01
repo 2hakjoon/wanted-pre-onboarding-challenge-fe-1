@@ -9,7 +9,7 @@ export const heduxAuthInitState = {
 
 export type HeduxAuthType = typeof heduxAuthInitState.auth;
 
-export const authReducer = <T>(state: T, action?: HeduxActionObj): T => {
+export const authReducer = <T>(state: T, action: HeduxActionObj): T => {
   if (!action) {
     return state;
   }
