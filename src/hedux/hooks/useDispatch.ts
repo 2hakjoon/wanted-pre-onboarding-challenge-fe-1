@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { HeduxStore } from '../..';
+import { HeduxContext } from '../component/HeduxContext';
 
 function useDispatch() {
-  const { dispatch } = useContext(HeduxStore);
+  const { dispatch } = useContext(HeduxContext);
 
   return (type: string, payload: object) => {
     dispatch(type, payload);

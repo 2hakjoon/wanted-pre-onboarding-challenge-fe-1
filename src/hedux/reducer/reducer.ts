@@ -1,23 +1,4 @@
-import { HeduxActionObj } from './types';
+import { authReducer } from '../moudles/auth';
+import combineReducers from './combineReducer';
 
-function reducer<T>(state: T, action?: HeduxActionObj): T {
-  if (!action) {
-    return {
-      ...state,
-    };
-  }
-
-  if (action.type === 'auth') {
-    return {
-      ...state,
-      auth: {
-        ...action.payload,
-      },
-    };
-  }
-  return {
-    ...state,
-  };
-}
-
-export default reducer;
+export const reducer = combineReducers({ authReducer });

@@ -7,6 +7,7 @@ import { authTokenKey, persistStore } from '../../../persistStore/persistStore';
 import useLoginMutation from '../hooks/useLoginMutation';
 import useLoginForm from '../hooks/useLoginForm';
 import useDispatch from '../../../hedux/hooks/useDispatch';
+import { ACTION_LOGIN } from '../../../hedux/moudles/auth';
 
 export const LoginFormContainer = styled.form`
   border-radius: 10px;
@@ -53,7 +54,7 @@ function LoginFormTemplate() {
     const onSuccess = ({ token }: LoginResponse) => {
       window.alert('로그인이 완료되었습니다.');
       persistStore.set(authTokenKey, token);
-      dispatch('auth', { isLoggedIn: true });
+      dispatch(ACTION_LOGIN, { isLoggedIn: true });
     };
 
     const onError = ({ response }: LoginError) => {
